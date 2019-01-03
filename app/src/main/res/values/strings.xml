@@ -15,4 +15,6 @@
     <string name="login">LOGIN</string>
     <string name="register">REGISTER</string>
     <string name="vapeshop">VapeShop</string>
+    <string name="username">Username:</string>
+    <string name="email">Email:</string>
 </resources>
