@@ -17,4 +17,8 @@
     <string name="vapeshop">VapeShop</string>
     <string name="username">Username:</string>
     <string name="email">Email:</string>
+    <string name="liquids">Liquids</string>
+    <string name="customizables">Customizables</string>
+    <string name="most_recent">Most Recent</string>
+    <string name="vapers">Vapers</string>
 </resources>
