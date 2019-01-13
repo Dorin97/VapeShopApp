@@ -21,4 +21,13 @@
     <string name="customizables">Customizables</string>
     <string name="most_recent">Most Recent</string>
     <string name="vapers">Vapers</string>
+    <string name="preco">Preço:</string>
+    <string name="descricao">Descrição:</string>
+    <string name="title_activity_cart">Cart</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="cart" />
+    <string name="profile" />
+    <string name="home" />
 </resources>

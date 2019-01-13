@@ -10,15 +10,15 @@ import android.view.View;
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
-public class Produto extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private BottomNavigationView navigationView;
+public class Eliquids extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produto);
+        setContentView(R.layout.activity_eliquids);
 
-        //inicialização do bottom menu
+        ///inicialização do bottom menu
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
 
         //chamamos o método setOnNavigationItemSelectedListener para a Activity
@@ -32,16 +32,10 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
         startActivity(intentVapers);
     }
 
-    //abre janela dos liquidos
-    public void onClickLiquids(View view) {
-        Intent intentLiquids = new Intent(this, Eliquids.class);
-        startActivity(intentLiquids);
-    }
-
     //abre janela dos costumizables
     public void onClickCostums(View view) {
-        Intent intentConstums = new Intent(this, Customizables.class);
-        startActivity(intentConstums);
+        Intent intentCostums = new Intent(this, Customizables.class);
+        startActivity(intentCostums);
     }
 
     //navigation menu

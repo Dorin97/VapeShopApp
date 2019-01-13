@@ -30,9 +30,26 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
-        <!--<activity android:name=".HomePage" /> -->
-         <activity android:name=".Produto" />
-        <activity android:name=".Profile"></activity>
+
+        <!-- <activity android:name=".HomePage" /> -->
+        <activity
+            android:name=".Produto"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Profile"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Vapers"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Eliquids"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Customizables"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Cart"
+            android:label="@string/title_activity_cart"></activity>
     </application>
 
 </manifest>
