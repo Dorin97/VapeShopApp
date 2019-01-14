@@ -1,22 +1,22 @@
 package ipleiria.pt.amsi.vapeshop;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
-public class Produto extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class Cart extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_produto);
+        setContentView(R.layout.activity_cart);
 
         //inicialização do bottom menu
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
@@ -40,8 +40,8 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
 
     //abre janela dos costumizables
     public void onClickCostums(View view) {
-        Intent intentConstums = new Intent(this, Customizables.class);
-        startActivity(intentConstums);
+        Intent intentCustoms = new Intent(this, Customizables.class);
+        startActivity(intentCustoms);
     }
 
     //navigation menu
