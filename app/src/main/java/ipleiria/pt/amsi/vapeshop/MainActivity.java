@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //butão login
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
+       /* Button btnLogin = (Button) findViewById(R.id.btnLogin);
         btnVapers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, HomePage.class));
             }
-        });
+        });*/
     }
 }
