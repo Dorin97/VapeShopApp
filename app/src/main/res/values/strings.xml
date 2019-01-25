@@ -32,4 +32,8 @@
     <string name="cart" />
     <string name="profile" />
     <string name="home" />
+    <string name="nomeproduto">NomeProduto</string>
+    <string name="descricao_do_prouto">Descricao do prouto</string>
+    <string name="preco_do_produto">Preco do produto</string>
+    <string name="adicionar_ao_carrinho">Adicionar ao carrinho</string>
 </resources>
