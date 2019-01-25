@@ -3,14 +3,12 @@ package ipleiria.pt.amsi.vapeshop;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -56,33 +54,6 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
         list_produtos.setLayoutManager(new LinearLayoutManager(this));
 
         productLists = new ArrayList<>();
-
-        //cria listener janela dos vapers
-        ImageButton btnVapers = (ImageButton) findViewById(R.id.imgBtnVapers);
-        btnVapers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, Vapers.class));
-            }
-        });
-
-        //cria listener dos liquidos
-        ImageButton btnLiquids = (ImageButton) findViewById(R.id.imgBtnLiquid);
-        btnLiquids.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, Eliquids.class));
-            }
-        });
-
-        //cria listener dos costumizables
-        ImageButton btnCostums = (ImageButton) findViewById(R.id.imgBtnCostum);
-        btnCostums.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(HomePage.this, Customizables.class));
-            }
-        });
     }
 
     private void loadUrlData(){
@@ -141,7 +112,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
 
     //navigation menu
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");

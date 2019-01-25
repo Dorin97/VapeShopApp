@@ -2,13 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ipleiria.pt.amsi.vapeshop">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- Acesso á base de dado do localhost -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -17,45 +18,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <!--
+                <activity
+                    android:name=".LoginActivity"
+                    android:label="@string/app_name">
+                </activity>
+        -->
+                <activity android:name=".HomePage" />
+                <activity
+                    android:name=".Produto"
+                    android:parentActivityName=".HomePage" />
+                <activity
+                    android:name=".Profile"
+                    android:parentActivityName=".HomePage" />
+                <activity
+                    android:name=".Vapers"
+                    android:parentActivityName=".HomePage" />
+                <activity
+                    android:name=".Eliquids"
+                    android:parentActivityName=".HomePage" />
+                <activity
+                    android:name=".Customizables"
+                    android:parentActivityName=".HomePage" />
+                <activity
+                    android:name=".Cart"
+                    android:label="@string/title_activity_cart" />
+            </application>
 
-        <activity android:name=".HomePage"
-            android:label="@string/app_name"/>
-        <activity
-            android:name=".Produto"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".Profile"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".Vapers"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".Eliquids"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".Customizables"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomePage" />
-        <activity
-            android:name=".Cart"
-            android:label="@string/app_name"
-            android:parentActivityName=".HomePage"/>
-    </application>
-
-</manifest>
+        </manifest>
