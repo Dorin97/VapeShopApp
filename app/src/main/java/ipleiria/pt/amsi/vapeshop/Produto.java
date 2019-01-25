@@ -1,12 +1,15 @@
 package ipleiria.pt.amsi.vapeshop;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import ipleiria.pt.amsi.vapeshop.adaptadores.ProductAdapter;
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
@@ -17,6 +20,17 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
+
+        ImageView imgProduto = (ImageView) findViewById(R.id.imgProduto);
+        TextView txtNomeProd = (TextView) findViewById(R.id.txtNomeProd);
+        //Falta a descrição
+        TextView txtPreco = (TextView) findViewById(R.id.txtPreco);
+
+        Intent intent = getIntent();
+        final String nomeProduto = intent.getStringExtra(ProductAdapter.KEY_NOME);
+        String imagem = intent.getStringExtra(ProductAdapter.KEY_IMAGEM);
+        final String preco = intent.getStringExtra(ProductAdapter.KEY_PRECO);
+
 
         //inicialização do bottom menu
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
@@ -46,7 +60,7 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
 
     //navigation menu
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");
