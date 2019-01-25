@@ -8,23 +8,20 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
-    <!-- Acesso á base de dado do localhost -->
-    <uses-permission android:name="android.permission.INTERNET"/>
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
@@ -37,25 +34,25 @@
                     android:label="@string/app_name">
                 </activity>
         -->
-                <activity android:name=".HomePage" />
-                <activity
-                    android:name=".Produto"
-                    android:parentActivityName=".HomePage" />
-                <activity
-                    android:name=".Profile"
-                    android:parentActivityName=".HomePage" />
-                <activity
-                    android:name=".Vapers"
-                    android:parentActivityName=".HomePage" />
-                <activity
-                    android:name=".Eliquids"
-                    android:parentActivityName=".HomePage" />
-                <activity
-                    android:name=".Customizables"
-                    android:parentActivityName=".HomePage" />
-                <activity
-                    android:name=".Cart"
-                    android:label="@string/title_activity_cart" />
-            </application>
+        <activity android:name=".HomePage" />
+        <activity
+            android:name=".Produto"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Profile"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Vapers"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Eliquids"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Customizables"
+            android:parentActivityName=".HomePage" />
+        <activity
+            android:name=".Cart"
+            android:label="@string/title_activity_cart" />
+    </application>
 
-        </manifest>
+</manifest>
