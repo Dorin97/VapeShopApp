@@ -62,13 +62,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.tv_name.setText(mData.get(position).getName());
+        holder.description.setText(mData.get(position).getPrice());
+
         // Load Image from the internet and set it into Imageview using Glide
-
         Glide.with(mContext).load(mData.get(position).getImage_url()).apply(option).into(holder.img_thumbnail);
-
-
-
     }
 
     @Override
@@ -78,6 +75,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tv_name ;
+        TextView description;
+        TextView price;
         ImageView img_thumbnail;
         LinearLayout view_container;
 
@@ -86,6 +85,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             view_container = itemView.findViewById(R.id.container);
             tv_name = itemView.findViewById(R.id.anime_name);
             img_thumbnail = itemView.findViewById(R.id.thumbnail);
+            description = itemView.findViewById(R.id.categorie);
+            price = itemView.findViewById(R.id.rating);
 
         }
     }

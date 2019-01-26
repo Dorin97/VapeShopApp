@@ -8,6 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -24,7 +25,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import ipleiria.pt.amsi.vapeshop.adapter.RecyclerViewAdapter;
@@ -39,7 +43,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
     //enviar o email do user
     public static final String DADOS_EMAIL = "amsi.dei.estg.ipleiria.pt";
 
-    private final String JSON_URL = "http://192.168.1.77:8888/produtos";
+    private final String JSON_URL = "http://192.168.1.70:8888/produtos";
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
     private List<Product> lstProduct;
@@ -71,12 +75,12 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
                     try {
                         jsonObject = response.getJSONObject(i);
                         Product product = new Product();
-                        product.setName(jsonObject.getString("name"));
-                        product.setDescription(jsonObject.getString("description"));
+                        product.setName(jsonObject.getString("nome"));
+                        product.setDescription(jsonObject.getString("descricao"));
 
-                        product.setPrice(jsonObject.getInt("price"));
+                        product.setPrice(jsonObject.getInt("preco"));
 
-                        product.setImage_url(jsonObject.getString("image_url"));
+                        product.setImage_url(jsonObject.getString("imagem"));
                         lstProduct.add(product);
 
                     } catch (JSONException e) {

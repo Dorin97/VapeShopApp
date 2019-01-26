@@ -43,8 +43,8 @@ public class Product {
         description = description;
     }
 
-    public void setPrice(int nb_episode) {
-        this.price = nb_episode;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
 
