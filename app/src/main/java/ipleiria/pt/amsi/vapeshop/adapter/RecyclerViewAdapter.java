@@ -62,7 +62,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.description.setText(mData.get(position).getPrice());
+        holder.description.setText(mData.get(position).getName());
 
         // Load Image from the internet and set it into Imageview using Glide
         Glide.with(mContext).load(mData.get(position).getImage_url()).apply(option).into(holder.img_thumbnail);
