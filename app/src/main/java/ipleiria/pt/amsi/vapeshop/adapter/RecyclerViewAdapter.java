@@ -37,44 +37,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view ;
         LayoutInflater inflater = LayoutInflater.from(mContext);
         view = inflater.inflate(R.layout.activity_product_items,parent,false) ;
+
         final MyViewHolder viewHolder = new MyViewHolder(view) ;
         viewHolder.view_container.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent i = new Intent(mContext, ProductActivity.class);
-                i.putExtra("anime_name",mData.get(viewHolder.getAdapterPosition()).getName());
-                i.putExtra("anime_description",mData.get(viewHolder.getAdapterPosition()).getDescription());
-                i.putExtra("anime_nb_episode",mData.get(viewHolder.getAdapterPosition()).getPrice());
-                i.putExtra("anime_img",mData.get(viewHolder.getAdapterPosition()).getImage_url());
+                i.putExtra("name",mData.get(viewHolder.getAdapterPosition()).getName());
+                i.putExtra("description",mData.get(viewHolder.getAdapterPosition()).getDescription());
+                i.putExtra("price",mData.get(viewHolder.getAdapterPosition()).getPrice());
+                i.putExtra("image_url",mData.get(viewHolder.getAdapterPosition()).getImage_url());
 
                 mContext.startActivity(i);
 
             }
         });
-
-
-
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.tv_name.setText(mData.get(position).getName());
-
+        holder.description.setText(mData.get(position).getPrice());
 
         // Load Image from the internet and set it into Imageview using Glide
-
         Glide.with(mContext).load(mData.get(position).getImage_url()).apply(option).into(holder.img_thumbnail);
-
-
-
     }
 
     @Override
@@ -83,21 +74,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-
         TextView tv_name ;
+        TextView description;
+        TextView price;
         ImageView img_thumbnail;
         LinearLayout view_container;
 
-
-
-
-
         public MyViewHolder(View itemView) {
             super(itemView);
-
             view_container = itemView.findViewById(R.id.container);
             tv_name = itemView.findViewById(R.id.anime_name);
             img_thumbnail = itemView.findViewById(R.id.thumbnail);
+            description = itemView.findViewById(R.id.categorie);
+            price = itemView.findViewById(R.id.rating);
 
         }
     }

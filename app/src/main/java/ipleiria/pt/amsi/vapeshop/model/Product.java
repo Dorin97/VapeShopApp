@@ -3,7 +3,7 @@ package ipleiria.pt.amsi.vapeshop.model;
 public class Product {
 
     private String name ;
-    private String Description;
+    private String description;
     private int price;
     private String image_url;
 
@@ -12,7 +12,7 @@ public class Product {
 
     public Product(String name, String description, int price, String image_url) {
         this.name = name;
-        Description = description;
+        this.description = description;
         this.price = price;
         this.image_url = image_url;
     }
@@ -23,7 +23,7 @@ public class Product {
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public int getPrice() {
@@ -40,11 +40,11 @@ public class Product {
     }
 
     public void setDescription(String description) {
-        Description = description;
+        description = description;
     }
 
-    public void setPrice(int nb_episode) {
-        this.price = nb_episode;
+    public void setPrice(int price) {
+        this.price = price;
     }
 
 
