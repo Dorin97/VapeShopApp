@@ -98,8 +98,8 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
         requestQueue.add(request);
     }
 
-    private void setuprecyclerview(List<Product> lstAnime) {
-        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(this, lstAnime);
+    private void setuprecyclerview(List<Product> lstProduct) {
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(this, lstProduct);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(myadapter);
 

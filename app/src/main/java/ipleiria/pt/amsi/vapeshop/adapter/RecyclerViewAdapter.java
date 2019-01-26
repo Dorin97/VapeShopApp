@@ -47,10 +47,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             public void onClick(View v) {
 
                 Intent i = new Intent(mContext, ProductActivity.class);
-                i.putExtra("name",mData.get(viewHolder.getAdapterPosition()).getName());
-                i.putExtra("description",mData.get(viewHolder.getAdapterPosition()).getDescription());
-                i.putExtra("price",mData.get(viewHolder.getAdapterPosition()).getPrice());
-                i.putExtra("image_url",mData.get(viewHolder.getAdapterPosition()).getImage_url());
+                i.putExtra("anime_name",mData.get(viewHolder.getAdapterPosition()).getName());
+                i.putExtra("anime_description",mData.get(viewHolder.getAdapterPosition()).getDescription());
+                i.putExtra("anime_nb_episode",mData.get(viewHolder.getAdapterPosition()).getPrice());
+                i.putExtra("anime_img",mData.get(viewHolder.getAdapterPosition()).getImage_url());
 
                 mContext.startActivity(i);
 
@@ -62,9 +62,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.description.setText(mData.get(position).getName());
+        holder.tv_name.setText(mData.get(position).getName());
+
+
 
         // Load Image from the internet and set it into Imageview using Glide
+
         Glide.with(mContext).load(mData.get(position).getImage_url()).apply(option).into(holder.img_thumbnail);
     }
 
@@ -86,7 +89,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_name = itemView.findViewById(R.id.anime_name);
             img_thumbnail = itemView.findViewById(R.id.thumbnail);
             description = itemView.findViewById(R.id.categorie);
-            price = itemView.findViewById(R.id.rating);
+
 
         }
     }

@@ -6,6 +6,7 @@ public class Product {
     private String description;
     private int price;
     private String image_url;
+    private String rating;
 
     public Product() {
     }
@@ -15,6 +16,7 @@ public class Product {
         this.description = description;
         this.price = price;
         this.image_url = image_url;
+        this.rating = rating;
     }
 
 
@@ -28,6 +30,10 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+    public String getRating() {
+        return rating;
     }
 
     public String getImage_url() {
