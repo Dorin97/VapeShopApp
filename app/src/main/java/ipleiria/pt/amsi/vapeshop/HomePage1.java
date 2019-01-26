@@ -22,6 +22,7 @@ import ipleiria.pt.amsi.vapeshop.adapter.RecyclerViewAdapter;
 import ipleiria.pt.amsi.vapeshop.model.Product;
 
 
+
 public class HomePage1 extends AppCompatActivity {
 
     private final String JSON_URL = "http://192.168.1.77:8888/produtos" ;
@@ -39,8 +40,6 @@ public class HomePage1 extends AppCompatActivity {
         lstProduct = new ArrayList<>() ;
         recyclerView = findViewById(R.id.rv);
         jsonrequest();
-
-
 
     }
 
