@@ -3,6 +3,7 @@ package ipleiria.pt.amsi.vapeshop;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +30,7 @@ import ipleiria.pt.amsi.vapeshop.adaptadores.ProductAdapter;
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
 public class HomePage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private BottomNavigationView navigationView;
 
     private static final String URL_DATA = "http://localhost:8888/produtos";
 
@@ -36,7 +38,6 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
     private RecyclerView.Adapter adapter;
     private List<ProductList> productLists;
     //enviar o email do user
-    private BottomNavigationView navigationView;
     public static final String DADOS_EMAIL = "amsi.dei.estg.ipleiria.pt";
 
     @Override
@@ -112,27 +113,27 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
 
     //navigation menu
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");
                 Intent intentHomePage = new Intent(this, HomePage.class);
                 startActivity(intentHomePage);
-               // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.menuProfile: {
                 getSupportActionBar().setTitle("Profile");
                 Intent intentProfile = new Intent(this, Profile.class);
                 startActivity(intentProfile);
-               // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;
             }
             case R.id.menuCart: {
                 getSupportActionBar().setTitle("Cart");
                 Intent intentCart = new Intent(this, Cart.class);
                 startActivity(intentCart);
-               // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;
             }
         }

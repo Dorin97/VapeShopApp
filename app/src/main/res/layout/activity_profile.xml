@@ -5,5 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="ipleiria.pt.amsi.vapeshop.HomePage">
+    tools:context=".HomePage">
 </LinearLayout>

@@ -7,20 +7,26 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/menuHome"
+            android:checked="true"
             android:icon="@drawable/home"
             android:title="@string/home"
-            android:checked="true" />
+            android:onClick="homePage"
+            android:visible="true" />
 
         <item
             android:id="@+id/menuProfile"
             android:icon="@drawable/profile"
             android:title="@string/profile"
-            android:checked="true"/>
+            android:checked="true"
+            android:onClick="profile"
+            android:visible="true"/>
 
         <item
             android:id="@+id/menuCart"
             android:icon="@drawable/cart"
             android:title="@string/cart"
-            android:checked="true"/>
+            android:checked="true"
+            android:onClick="cart"
+            android:visible="true"/>
     </group>
 </menu>
