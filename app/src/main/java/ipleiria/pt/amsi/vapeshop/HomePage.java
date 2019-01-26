@@ -13,9 +13,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,75 +27,79 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import ipleiria.pt.amsi.vapeshop.adaptadores.ProductAdapter;
+import ipleiria.pt.amsi.vapeshop.adapter.RecyclerViewAdapter;
+import ipleiria.pt.amsi.vapeshop.model.Product;
 
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
 public class HomePage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+
     private BottomNavigationView navigationView;
-
-    private static final String URL_DATA = "http://localhost:8888/produtos";
-
-    private RecyclerView list_produtos;
-    private RecyclerView.Adapter adapter;
-    private List<ProductList> productLists;
     //enviar o email do user
     public static final String DADOS_EMAIL = "amsi.dei.estg.ipleiria.pt";
+
+    private final String JSON_URL = "http://192.168.1.77:8888/produtos";
+    private JsonArrayRequest request;
+    private RequestQueue requestQueue;
+    private List<Product> lstProduct;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
         //inicialização do bottom menu
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
         //chamamos o método setOnNavigationItemSelectedListener para a Activity
         // notificar e escutar quando um item da Bottom Navigation for selecionado.
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        list_produtos = (RecyclerView) findViewById(R.id.list_produtos);
-        list_produtos.setHasFixedSize(true);
-        list_produtos.setLayoutManager(new LinearLayoutManager(this));
-
-        productLists = new ArrayList<>();
+        lstProduct = new ArrayList<>();
+        recyclerView = findViewById(R.id.list_produtos);
+        jsonrequest();
     }
 
-    private void loadUrlData(){
-
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading....");
-        progressDialog.show();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_DATA, new Response.Listener<String>() {
-
+    private void jsonrequest() {
+        request = new JsonArrayRequest(JSON_URL, new Response.Listener<JSONArray>() {
             @Override
-            public void onResponse(String response) {
-                progressDialog.dismiss();
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray array = jsonObject.getJSONArray("items");
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject jo = array.getJSONObject(i);
-                        ProductList products = new ProductList(
-                                jo.getString("nome"),
-                                jo.getString("imagem"),
-                                jo.getInt("preco")
-                        );
-                        productLists.add(products);
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        Product product = new Product();
+                        product.setName(jsonObject.getString("name"));
+                        product.setDescription(jsonObject.getString("description"));
+
+                        product.setPrice(jsonObject.getInt("price"));
+
+                        product.setImage_url(jsonObject.getString("image_url"));
+                        lstProduct.add(product);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                    adapter = new ProductAdapter(productLists, getApplicationContext());
-                    list_produtos.setAdapter(adapter);
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+                setuprecyclerview(lstProduct);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(HomePage.this, "ERRO" + error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+        requestQueue = Volley.newRequestQueue(HomePage.this);
+        requestQueue.add(request);
     }
 
+    private void setuprecyclerview(List<Product> lstAnime) {
+        RecyclerViewAdapter myadapter = new RecyclerViewAdapter(this, lstAnime);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(myadapter);
+
+    }
     //abre janela dos vapers
     public void onClickVapers(View view) {
         Intent intentVapers = new Intent(this, Vapers.class);
