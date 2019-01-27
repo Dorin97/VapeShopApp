@@ -64,14 +64,6 @@
 
     <View style="@style/Seperator" />
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vapers"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
     <SearchView
         android:id="@+id/searchProduct"
         android:layout_width="match_parent"

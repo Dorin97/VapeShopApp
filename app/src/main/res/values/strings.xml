@@ -27,6 +27,11 @@
     <string name="descricao">Descrição:</string>
     <string name="title_activity_cart">Cart</string>
     <string name="title_home">Home</string>
+    <string name="title_activity_vapers">Vapers</string>
+    <string name="title_activity_liquids">E-liquids</string>
+    <string name="title_activity_costumizables">Costumizables</string>
+    <string name="title_activity_profile">Perfil de Utilizador</string>
+    <string name="title_activity_product">Detalhe do Produto</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="cart" />

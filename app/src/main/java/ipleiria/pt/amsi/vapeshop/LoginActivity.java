@@ -28,9 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,27 +65,17 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /*****/
     private TextView textView;
-    private EditText editText;
-    private Button applyTextButton;
-    private Button saveButton;
-    private Switch switch1;
-
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String TEXT = "text";
-    public static final String SWITCH1 = "switch1";
-
-    private String text;
-    private boolean switchOnOff;
-
     /****/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         // Set up the login form.
         txtEmail = (AutoCompleteTextView) findViewById(R.id.txtEmail);
         populateAutoComplete();
+
 
         txtPass = (EditText) findViewById(R.id.txtPass);
         txtPass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -112,43 +100,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         loginFormView = findViewById(R.id.email_login_form);
         progressView = findViewById(R.id.login_progress);
         textView = (TextView) findViewById(R.id.txtEmail);
-        saveButton = (Button) findViewById(R.id.save_button);
-        switch1 = (Switch) findViewById(R.id.switch1);
-
-
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveData();
-            }
-        });
-
-        loadData();
-        updateViews();
-
-    }
-
-    public void saveData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
-        editor.putString(TEXT, textView.getText().toString());
-        editor.putBoolean(SWITCH1, switch1.isChecked());
-
-        editor.apply();
-
-        Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show();
-    }
-
-    public void loadData() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-        text = sharedPreferences.getString(TEXT, "");
-        switchOnOff = sharedPreferences.getBoolean(SWITCH1, false);
-    }
-
-    public void updateViews() {
-        textView.setText(text);
-        switch1.setChecked(switchOnOff);
     }
 
     private void populateAutoComplete() {
@@ -336,11 +287,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         txtEmail.setAdapter(adapter);
     }
 
-    public void onClickShutDown(View view) {
-
-    }
-
-
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -388,6 +334,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
 
+        @Override
+        protected void onPostExecute(final Boolean success) {
+            mAuthTask = null;
+            showProgress(false);
+
+            if (success) {
+                finish();
+                Intent intentLogin = new Intent(getApplicationContext(), HomePage.class);
+                intentLogin.putExtra(HomePage.DADOS_EMAIL, mEmail);
+                startActivity(intentLogin);
+            } else {
+                txtPass.setError(getString(R.string.error_incorrect_password));
+                txtPass.requestFocus();
+            }
+        }
 
         @Override
         protected void onCancelled() {

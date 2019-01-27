@@ -52,6 +52,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:onClick="onClickCostums"
             android:src="@drawable/customizables"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,15 +62,6 @@
     </android.support.constraint.ConstraintLayout>
 
     <View style="@style/Seperator" />
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Eliquids"
-        android:textAlignment="center"
-        android:textSize="30sp" />
 
     <SearchView
         android:id="@+id/searchProduct"

@@ -77,7 +77,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
                         Product product = new Product();
                         product.setName(jsonObject.getString("nome"));
                         product.setDescription(jsonObject.getString("descricao"));
-                        product.setPrice(jsonObject.getInt("preco"));
+                        product.setPrice(jsonObject.getDouble("preco"));
                         product.setImage_url(jsonObject.getString("imagem"));
                         lstProduct.add(product);
 
