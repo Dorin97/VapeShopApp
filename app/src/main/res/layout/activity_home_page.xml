@@ -66,8 +66,8 @@
     <TextView
         android:id="@+id/txtProdutos"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="60dp"
+        android:layout_weight="0"
         android:text="Produtos"
         android:textAlignment="center"
         android:textSize="30sp" />
@@ -75,7 +75,8 @@
     <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/list_produtos"
         android:layout_width="match_parent"
-        android:layout_height="334dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:padding="16dp" />
 

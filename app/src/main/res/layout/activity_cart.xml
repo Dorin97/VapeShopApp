@@ -9,70 +9,6 @@
     tools:context=".HomePage">
 
     <!-- menu -->
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/LayoutMenu"
-        android:layout_width="match_parent"
-        android:layout_height="124dp"
-        android:layout_weight="0">
-
-        <ImageButton
-            android:id="@+id/imgBtnVapers"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="onClickVapers"
-            android:src="@drawable/vapers"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgBtnLiquid"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/imgBtnLiquid"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="onClickLiquids"
-            android:src="@drawable/eliquid"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imgBtnCostum"
-            app:layout_constraintStart_toEndOf="@+id/imgBtnVapers"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <ImageButton
-            android:id="@+id/imgBtnCostum"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="onClickCostums"
-            android:src="@drawable/customizables"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgBtnLiquid"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </android.support.constraint.ConstraintLayout>
-
-    <View style="@style/Seperator" />
-
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Cart"
-        android:textAlignment="center"
-        android:textSize="30sp" />
 
     <ListView
         android:id="@+id/CartList"
@@ -84,14 +20,14 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/LayoutButoes"
         android:layout_width="match_parent"
-        android:layout_height="124dp"
+        android:layout_height="wrap_content"
         android:layout_weight="0">
 
 
         <Button
             android:id="@+id/btnRemove"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -106,9 +42,10 @@
         <Button
             android:id="@+id/btnCheckout"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Checkout"
             app:layout_constraintBottom_toBottomOf="parent"

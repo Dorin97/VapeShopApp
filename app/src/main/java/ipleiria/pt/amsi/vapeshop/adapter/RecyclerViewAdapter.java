@@ -15,7 +15,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-import ipleiria.pt.amsi.vapeshop.ProductActivity;
+import ipleiria.pt.amsi.vapeshop.Produto;
 import ipleiria.pt.amsi.vapeshop.R;
 import ipleiria.pt.amsi.vapeshop.model.Product;
 
@@ -46,11 +46,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(mContext, ProductActivity.class);
-                i.putExtra("anime_name",mData.get(viewHolder.getAdapterPosition()).getName());
-                i.putExtra("anime_description",mData.get(viewHolder.getAdapterPosition()).getDescription());
-                i.putExtra("anime_nb_episode",mData.get(viewHolder.getAdapterPosition()).getPrice());
-                i.putExtra("anime_img",mData.get(viewHolder.getAdapterPosition()).getImage_url());
+                Intent i = new Intent(mContext, Produto.class);
+                i.putExtra("nome",mData.get(viewHolder.getAdapterPosition()).getName());
+                i.putExtra("descricao",mData.get(viewHolder.getAdapterPosition()).getDescription());
+                i.putExtra("preco",mData.get(viewHolder.getAdapterPosition()).getPrice());
+                i.putExtra("imagem",mData.get(viewHolder.getAdapterPosition()).getImage_url());
 
                 mContext.startActivity(i);
 
@@ -62,12 +62,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.tv_name.setText(mData.get(position).getName());
-
-
+        holder.pr_name.setText(mData.get(position).getName());
+        //holder.description.setText(mData.get(position).getDescription());
+        holder.price.setText(String.valueOf(mData.get(position).getPrice()) + "€");
 
         // Load Image from the internet and set it into Imageview using Glide
-
         Glide.with(mContext).load(mData.get(position).getImage_url()).apply(option).into(holder.img_thumbnail);
     }
 
@@ -77,7 +76,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tv_name ;
+        TextView pr_name ;
         TextView description;
         TextView price;
         ImageView img_thumbnail;
@@ -86,9 +85,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public MyViewHolder(View itemView) {
             super(itemView);
             view_container = itemView.findViewById(R.id.container);
-            tv_name = itemView.findViewById(R.id.anime_name);
+            pr_name = itemView.findViewById(R.id.product_name);
             img_thumbnail = itemView.findViewById(R.id.thumbnail);
-            description = itemView.findViewById(R.id.categorie);
+            price = itemView.findViewById(R.id.price);
 
 
         }

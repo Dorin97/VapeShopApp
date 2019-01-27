@@ -11,7 +11,8 @@ import android.view.View;
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
 public class Eliquids extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-private BottomNavigationView navigationView;
+
+    private BottomNavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

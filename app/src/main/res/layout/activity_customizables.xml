@@ -64,15 +64,6 @@
 
     <View style="@style/Seperator" />
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:text="Customizables"
-        android:textAlignment="center"
-        android:textSize="30sp" />
-
     <SearchView
         android:id="@+id/searchProduct"
         android:layout_width="match_parent"

@@ -4,19 +4,17 @@ public class Product {
 
     private String name ;
     private String description;
-    private int price;
+    private Double price;
     private String image_url;
-    private String rating;
 
     public Product() {
     }
 
-    public Product(String name, String description, int price, String image_url) {
+    public Product(String name, String description, Double price, String image_url) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.image_url = image_url;
-        this.rating = rating;
     }
 
 
@@ -28,12 +26,8 @@ public class Product {
         return description;
     }
 
-    public int getPrice() {
+    public Double getPrice() {
         return price;
-    }
-
-    public String getRating() {
-        return rating;
     }
 
     public String getImage_url() {
@@ -46,10 +40,10 @@ public class Product {
     }
 
     public void setDescription(String description) {
-        description = description;
+        this.description = description;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
