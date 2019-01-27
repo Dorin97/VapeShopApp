@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_company_egister"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:background="#cee3ec"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    >
+
+    <TextView
+        android:text="@string/register"
+        android:gravity="center"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColor="#000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textView" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Name"
+        android:textColorHint="#0a0909"
+        android:ems="10"
+        android:layout_below="@+id/textView"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="20dp"
+        android:id="@+id/editName"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:textColorHint="#0a0909"
+        android:ems="10"
+        android:layout_below="@+id/editName"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="20dp"
+        android:id="@+id/editEmail"
+        />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:textColorHint="#0a0909"
+        android:ems="10"
+        android:layout_below="@+id/editEmail"
+        android:layout_marginTop="20dp"
+        android:id="@+id/editPassword"
+        />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonRegister"
+        android:background="#FFD7AF5F"
+        android:layout_below="@+id/editPassword"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_marginTop="20dp"
+        android:text="Register"/>
+
+</RelativeLayout>

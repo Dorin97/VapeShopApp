@@ -7,6 +7,7 @@ import android.app.LoaderManager.LoaderCallbacks;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
@@ -26,8 +27,10 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,8 +65,21 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View progressView;
     private View loginFormView;
 
-    /*****/
+    /****/
+
     private TextView textView;
+    private TextView textView1;
+    private EditText editText;
+    private Button applyTextButton;
+    private Button saveButton;
+
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String TEXT = "text";
+
+
+    private String text;
+
     /****/
 
     @Override
@@ -99,7 +115,44 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         loginFormView = findViewById(R.id.email_login_form);
         progressView = findViewById(R.id.login_progress);
         textView = (TextView) findViewById(R.id.txtUsername);
+        textView1 = (TextView) findViewById(R.id.txtPass);
+        saveButton = (Button) findViewById(R.id.save_button);
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
+        loadData();
+        updateViews();
+
     }
+
+    public void saveData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString(TEXT, textView.getText().toString());
+        editor.putString(TEXT, textView1.getText().toString());
+
+        editor.apply();
+
+        Toast.makeText(this, "Email and password saved!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        text = sharedPreferences.getString(TEXT, "");
+
+    }
+
+    public void updateViews() {
+        textView.setText(text);
+        textView1.setText(text);
+
+    }
+
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
