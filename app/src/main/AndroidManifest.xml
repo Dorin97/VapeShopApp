@@ -22,7 +22,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".CompanyHomePage"
             android:label="@string/app_name">
 
             <intent-filter>
@@ -30,6 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CompanyRegister" />
+        <activity
+            android:name=".CompanyMenu"/>
+
         <activity
             android:name=".HomePage"
             android:label="@string/title_home"/>
