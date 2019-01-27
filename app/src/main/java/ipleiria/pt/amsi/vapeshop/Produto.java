@@ -39,7 +39,7 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
 
         // ini views
 
-        TextView tv_name = findViewById(R.id.txtUsername);
+        TextView tv_name = findViewById(R.id.txtNomeProduto);
         TextView tv_description = findViewById(R.id.txtDescricao);
         TextView tv_price = findViewById(R.id.txtPreco);
         ImageView img = findViewById(R.id.imgProduto);

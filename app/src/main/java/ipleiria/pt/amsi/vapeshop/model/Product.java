@@ -7,9 +7,6 @@ public class Product {
     private Double price;
     private String image_url;
 
-    public Product() {
-    }
-
     public Product(String name, String description, Double price, String image_url) {
         this.name = name;
         this.description = description;
@@ -46,7 +43,6 @@ public class Product {
     public void setPrice(Double price) {
         this.price = price;
     }
-
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;

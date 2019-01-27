@@ -19,14 +19,14 @@ import ipleiria.pt.amsi.vapeshop.Produto;
 import ipleiria.pt.amsi.vapeshop.R;
 import ipleiria.pt.amsi.vapeshop.model.Product;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
     private Context mContext ;
     private List<Product> mData ;
     RequestOptions option;
 
 
-    public RecyclerViewAdapter(Context mContext, List<Product> mData) {
+    public ProductAdapter(Context mContext, List<Product> mData) {
         this.mContext = mContext;
         this.mData = mData;
 
