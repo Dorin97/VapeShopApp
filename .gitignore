@@ -12,3 +12,6 @@
 .idea/misc.xml
 .idea/misc.xml
 .idea/caches/gradle_models.ser
+.idea/caches/gradle_models.ser
+.idea/gradle.xml
+app/src/main/AndroidManifest.xml
