@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    static String DATABASE_NAME="VapeshopDB";
+    public static String DATABASE_NAME="VapeshopDB";
 
     public static final String TABLE_NAME="UserTable";
     public static final String ID="id";

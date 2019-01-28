@@ -14,10 +14,11 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
+import ipleiria.pt.amsi.vapeshop.HomePage2;
 import ipleiria.pt.amsi.vapeshop.listeners.ProdutosListener;
 import ipleiria.pt.amsi.vapeshop.utils.ProdutoJsonParser;
 
-class SingletonGestorVapeshop implements ProdutosListener{
+public class SingletonGestorVapeshop implements ProdutosListener{
 
     private static SingletonGestorVapeshop INSTANCE = null;
 
@@ -29,7 +30,7 @@ class SingletonGestorVapeshop implements ProdutosListener{
 
     private ProdutosListener produtosListener;
 
-    private String mUrlAPIProdutos =  "http://amsi.dei.estg.ipleiria.pt/api/livros";
+    private String mUrlAPIProdutos =  "http://amsi.dei.estg.ipleiria.pt/api/produtos";
     private String mUrlAPILogin =  "http://amsi.dei.estg.ipleiria.pt/api/auth/login";
 
     public static synchronized SingletonGestorVapeshop getInstance(Context context) {
@@ -142,17 +143,16 @@ class SingletonGestorVapeshop implements ProdutosListener{
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    System.out.println("-->Erro: GETALLLIVROAPI");
+                    System.out.println("-->Erro: GETALLPODUTOAPI");
                 }
             });
 
             volleyQueue.add(req);
         }
     }
-    public void getProdutosListener(ProdutosListener produtosListener)
+    public void setProdutosListener(HomePage2 produtosListener)
     {
         this.produtosListener = produtosListener;
-
 
     }
 

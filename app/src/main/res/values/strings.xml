@@ -52,6 +52,7 @@
     <string name="delete_item_message">Tem a certeza que deseja apagar este item?</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
+    <string name="AdicionarProduto">Adicionar Produto</string>
 
 
 </resources>

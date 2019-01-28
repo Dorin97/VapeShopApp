@@ -39,10 +39,10 @@
 
         <activity android:name=".CompanyMenu" />
         <activity
-            android:name=".HomePage"
+            android:name=".HomePage2"
             android:label="@string/title_home" />
         <activity
-            android:name=".Produto"
+            android:name=".DetalhesProduto"
             android:label="@string/title_activity_product" />
         <activity
             android:name=".Profile"

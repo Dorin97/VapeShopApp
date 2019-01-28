@@ -45,7 +45,7 @@ public class Eliquids extends AppCompatActivity implements BottomNavigationView.
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");
-                Intent intentHomePage = new Intent(this, HomePage.class);
+                Intent intentHomePage = new Intent(this, HomePage2.class);
                 startActivity(intentHomePage);
                 // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;

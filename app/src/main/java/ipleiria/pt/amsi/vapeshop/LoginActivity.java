@@ -27,7 +27,6 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -395,8 +394,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 finish();
-                Intent intentLogin = new Intent(getApplicationContext(), HomePage.class);
-                intentLogin.putExtra(HomePage.DADOS_EMAIL, mUser);
+                Intent intentLogin = new Intent(getApplicationContext(), HomePage2.class);
+                intentLogin.putExtra(HomePage2.DADOS_EMAIL, mUser);
                 startActivity(intentLogin);
             } else {
                 txtPass.setError(getString(R.string.error_incorrect_password));

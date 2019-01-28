@@ -1,9 +1,5 @@
 package ipleiria.pt.amsi.vapeshop.adapter;
 
-import java.math.BigDecimal;
-import java.util.Collections;
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +9,10 @@ import android.widget.TextView;
 
 import com.android.tonyvu.sc.model.Cart;
 import com.android.tonyvu.sc.util.CartHelper;
+
+import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
 
 import ipleiria.pt.amsi.vapeshop.R;
 import ipleiria.pt.amsi.vapeshop.model.CartItem;
@@ -74,7 +74,7 @@ public class CartItemAdapter extends BaseAdapter {
         final Cart cart = CartHelper.getCart();
         final CartItem cartItem = getItem(position);
         tvName.setText(cartItem.getProduto().getName());
-        tvUnitPrice.setText(Product.CURRENCY+String.valueOf(cartItem.getProduto().getPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
+        tvUnitPrice.setText(Product.CURRENCY+String.valueOf(cartItem.getProduto().getPrice()));
         tvQuantity.setText(String.valueOf(cartItem.getQuantidade()));
         tvPrice.setText(Product.CURRENCY+String.valueOf(cart.getCost(cartItem.getProduto()).setScale(2, BigDecimal.ROUND_HALF_UP)));
         return convertView;
