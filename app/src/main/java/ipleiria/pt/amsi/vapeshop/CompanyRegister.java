@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import ipleiria.pt.amsi.vapeshop.model.DBHelper;
+import ipleiria.pt.amsi.vapeshop.model.UserDBHelper;
 
 public class CompanyRegister extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class CompanyRegister extends AppCompatActivity {
     Boolean EditTextEmptyHolder;
     SQLiteDatabase sqLiteDatabaseObj;
     String SQLiteDataBaseQueryHolder ;
-    DBHelper dbHelper;
+    UserDBHelper dbHelper;
     Cursor cursor;
     String F_Result = "Not_Found";
 
@@ -37,7 +37,7 @@ public class CompanyRegister extends AppCompatActivity {
         Password = (EditText)findViewById(R.id.editPassword);
         Name = (EditText)findViewById(R.id.editName);
 
-        dbHelper = new DBHelper(this);
+        dbHelper = new UserDBHelper(this);
 
         // Adding click listener to register button.
         Register.setOnClickListener(new View.OnClickListener() {
@@ -68,18 +68,18 @@ public class CompanyRegister extends AppCompatActivity {
     // SQLite database build method.
     public void SQLiteDataBaseBuild(){
 
-        sqLiteDatabaseObj = openOrCreateDatabase(DBHelper.DATABASE_NAME, Context.MODE_PRIVATE, null);
+        sqLiteDatabaseObj = openOrCreateDatabase(UserDBHelper.DATABASE_NAME, Context.MODE_PRIVATE, null);
 
     }
 
     // SQLite table build method.
     public void SQLiteTableBuild() {
 
-        sqLiteDatabaseObj.execSQL("CREATE TABLE IF NOT EXISTS " + DBHelper.TABLE_NAME + "(" +
-                DBHelper.ID + " PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-                DBHelper.NAME + " VARCHAR, " +
-                DBHelper.EMAIL + " VARCHAR, " +
-                DBHelper.PASSWORD + " VARCHAR);");
+        sqLiteDatabaseObj.execSQL("CREATE TABLE IF NOT EXISTS " + UserDBHelper.TABLE_NAME + "(" +
+                UserDBHelper.ID + " PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                UserDBHelper.NAME + " VARCHAR, " +
+                UserDBHelper.EMAIL + " VARCHAR, " +
+                UserDBHelper.PASSWORD + " VARCHAR);");
     }
 
     // Insert data into SQLite database method.
@@ -91,7 +91,7 @@ public class CompanyRegister extends AppCompatActivity {
             contentValues.put("name", NameHolder);
             contentValues.put("email", EmailHolder);
             contentValues.put("password", PasswordHolder);
-            a = dbHelper.inserir(DBHelper.TABLE_NAME, contentValues, DBHelper.ID);
+            a = dbHelper.inserir(UserDBHelper.TABLE_NAME, contentValues, UserDBHelper.ID);
             if (a > 0) {
                 Toast.makeText(this, "You have registered successfully.", Toast.LENGTH_SHORT).show();
             }
@@ -139,8 +139,8 @@ public class CompanyRegister extends AppCompatActivity {
         sqLiteDatabaseObj = dbHelper.getWritableDatabase();
 
         // Adding search email query to cursor.
-        cursor = sqLiteDatabaseObj.query(DBHelper.TABLE_NAME, null, " " +
-                DBHelper.EMAIL + "=?", new String[]{EmailHolder}, null, null, null);
+        cursor = sqLiteDatabaseObj.query(UserDBHelper.TABLE_NAME, null, " " +
+                UserDBHelper.EMAIL + "=?", new String[]{EmailHolder}, null, null, null);
 
         while (cursor.moveToNext()) {
 

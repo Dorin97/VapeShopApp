@@ -394,8 +394,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             if (success) {
                 finish();
-                Intent intentLogin = new Intent(getApplicationContext(), HomePage2.class);
-                intentLogin.putExtra(HomePage2.DADOS_EMAIL, mUser);
+                Intent intentLogin = new Intent(getApplicationContext(), HomePage.class);
+                intentLogin.putExtra(HomePage.DADOS_EMAIL, mUser);
                 startActivity(intentLogin);
             } else {
                 txtPass.setError(getString(R.string.error_incorrect_password));

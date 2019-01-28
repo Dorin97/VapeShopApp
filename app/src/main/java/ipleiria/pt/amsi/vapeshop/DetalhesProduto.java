@@ -68,7 +68,7 @@ public class DetalhesProduto extends AppCompatActivity implements BottomNavigati
             preencherDadosProduto();
         }
 
-        idProduto = getIntent().getLongExtra(HomePage2.DETALHES_PRODUTO, -1);
+        idProduto = getIntent().getLongExtra(HomePage.DETALHES_PRODUTO, -1);
 
         produto = SingletonGestorVapeshop.getInstance(getApplicationContext()).getProduto(idProduto);
 
@@ -173,7 +173,7 @@ public class DetalhesProduto extends AppCompatActivity implements BottomNavigati
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");
-                Intent intentHomePage = new Intent(this, HomePage2.class);
+                Intent intentHomePage = new Intent(this, HomePage.class);
                 startActivity(intentHomePage);
                 // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;

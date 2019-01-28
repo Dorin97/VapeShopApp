@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity implements BottomNavigationView.O
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");
-                Intent intentHomePage = new Intent(this, HomePage2.class);
+                Intent intentHomePage = new Intent(this, HomePage.class);
                 startActivity(intentHomePage);
                 // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;

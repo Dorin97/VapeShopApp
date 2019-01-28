@@ -39,7 +39,7 @@
 
         <activity android:name=".CompanyMenu" />
         <activity
-            android:name=".HomePage2"
+            android:name=".HomePage"
             android:label="@string/title_home" />
         <activity
             android:name=".DetalhesProduto"

@@ -14,7 +14,7 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
-import ipleiria.pt.amsi.vapeshop.HomePage2;
+import ipleiria.pt.amsi.vapeshop.HomePage;
 import ipleiria.pt.amsi.vapeshop.listeners.ProdutosListener;
 import ipleiria.pt.amsi.vapeshop.utils.ProdutoJsonParser;
 
@@ -26,12 +26,12 @@ public class SingletonGestorVapeshop implements ProdutosListener{
 
     private static RequestQueue volleyQueue = null;
 
-    private DBHelper produtoDBHelper = null;
+    private ProdDBHelper produtoProdDBHelper = null;
 
     private ProdutosListener produtosListener;
 
-    private String mUrlAPIProdutos =  "http://amsi.dei.estg.ipleiria.pt/api/produtos";
-    private String mUrlAPILogin =  "http://amsi.dei.estg.ipleiria.pt/api/auth/login";
+    private String mUrlAPIProdutos =  "http://192.168.1.70:8888/produtos";
+    private String mUrlAPILogin =  "http://192.168.1.70:8888/auth/login";
 
     public static synchronized SingletonGestorVapeshop getInstance(Context context) {
         if (INSTANCE == null)
@@ -45,11 +45,11 @@ public class SingletonGestorVapeshop implements ProdutosListener{
         produtos = new ArrayList<>();
         //gerarFakeData();
 
-        produtoDBHelper = new DBHelper(context);
+        produtoProdDBHelper = new ProdDBHelper(context);
     }
     public ArrayList<Product>getProdutos()
     {
-        produtos = produtoDBHelper.getAllProdutosBD();
+        produtos = produtoProdDBHelper.getAllProdutosBD();
         return new ArrayList<>(produtos);
     }
 
@@ -67,12 +67,12 @@ public class SingletonGestorVapeshop implements ProdutosListener{
 
     public void adicionarProdutoBD(Product produto)
     {
-        produtoDBHelper.adicionarProdutoBD(produto);
+        produtoProdDBHelper.adicionarProdutoBD(produto);
     }
 
     public void adicionarProdutosBD(ArrayList<Product> listaProdutos)
     {
-        produtoDBHelper.removerAllProdutos();
+        produtoProdDBHelper.removerAllProdutos();
 
         for(Product produto : listaProdutos)
         {
@@ -91,7 +91,7 @@ public class SingletonGestorVapeshop implements ProdutosListener{
 
         if(auxProduto != null)
         {
-            if (produtoDBHelper.removerProdutoBD(auxProduto.getId()))
+            if (produtoProdDBHelper.removerProdutoBD(auxProduto.getId()))
             {
                 produtos.remove(auxProduto);
             }
@@ -111,7 +111,7 @@ public class SingletonGestorVapeshop implements ProdutosListener{
         auxProduto.setPrice(produto.getPrice());
         auxProduto.setImage_url(produto.getImage_url());
 
-        if (produtoDBHelper.editarProdutoBD(auxProduto))
+        if (produtoProdDBHelper.editarProdutoBD(auxProduto))
         {
             System.out.println("Produto Alterado");
         }
@@ -123,7 +123,7 @@ public class SingletonGestorVapeshop implements ProdutosListener{
 
         if(!isConnected)
         {
-            produtos = produtoDBHelper.getAllProdutosBD();
+            produtos = produtoProdDBHelper.getAllProdutosBD();
         }
         else
         {
@@ -150,7 +150,7 @@ public class SingletonGestorVapeshop implements ProdutosListener{
             volleyQueue.add(req);
         }
     }
-    public void setProdutosListener(HomePage2 produtosListener)
+    public void setProdutosListener(HomePage produtosListener)
     {
         this.produtosListener = produtosListener;
 
@@ -176,5 +176,7 @@ public class SingletonGestorVapeshop implements ProdutosListener{
         }
     }
 
+    public void loginAPI(final String email, final String password, final Context context){
 
+    }
 }

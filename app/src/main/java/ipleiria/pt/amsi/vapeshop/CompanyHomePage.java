@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import ipleiria.pt.amsi.vapeshop.model.DBHelper;
+import ipleiria.pt.amsi.vapeshop.model.UserDBHelper;
 
 public class CompanyHomePage extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class CompanyHomePage extends AppCompatActivity {
     String EmailHolder, PasswordHolder;
     Boolean EditTextEmptyHolder;
     SQLiteDatabase sqLiteDatabaseObj;
-    DBHelper dBHelper;
+    UserDBHelper dBHelper;
     Cursor cursor;
     String TempPassword = "NOT_FOUND" ;
     public static final String UserEmail = "";
@@ -39,7 +39,7 @@ public class CompanyHomePage extends AppCompatActivity {
         Email = (EditText)findViewById(R.id.editEmail);
         Password = (EditText)findViewById(R.id.editPassword);
 
-        dBHelper = new DBHelper(this);
+        dBHelper = new UserDBHelper(this);
 
         //Adding click listener to log in button.
         LogInButton.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class CompanyHomePage extends AppCompatActivity {
             sqLiteDatabaseObj = dBHelper.getWritableDatabase();
 
             // Adding search email query to cursor.
-            cursor = sqLiteDatabaseObj.query(DBHelper.TABLE_NAME, null, " " + DBHelper.EMAIL + "=?", new String[]{EmailHolder}, null, null, null);
+            cursor = sqLiteDatabaseObj.query(UserDBHelper.TABLE_NAME, null, " " + UserDBHelper.EMAIL + "=?", new String[]{EmailHolder}, null, null, null);
 
             while (cursor.moveToNext()) {
 
@@ -92,7 +92,7 @@ public class CompanyHomePage extends AppCompatActivity {
                     cursor.moveToFirst();
 
                     // Storing Password associated with entered email.
-                    TempPassword = cursor.getString(cursor.getColumnIndex(DBHelper.PASSWORD));
+                    TempPassword = cursor.getString(cursor.getColumnIndex(UserDBHelper.PASSWORD));
 
                     // Closing cursor.
                     cursor.close();

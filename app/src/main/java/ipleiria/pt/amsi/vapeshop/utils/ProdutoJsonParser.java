@@ -77,4 +77,14 @@ public class ProdutoJsonParser {
 
         return networkInfo != null && networkInfo.isConnected();
     }
+
+    public static boolean parserJsonLogin(Context context)
+    {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+
+        return networkInfo != null && networkInfo.isConnected();
+    }
+
+
 }

@@ -8,32 +8,26 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class ProdDBHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
     public static String DATABASE_NAME="VapeshopDB";
 
-    public static final String TABLE_NAME="UserTable";
-    public static final String ID="id";
-    public static final String NAME="name";
-    public static final String EMAIL="email";
-    public static final String PASSWORD="password";
-
     //Produtos
-    private static final String TABLE_PROD = "Produtos";
+    private static final String TABLE_NAME = "produtos";
 
     private static final String ID_PROD = "id";
     private static final String NOME_PRODUTO = "nome";
     private static final String DESCRICAO = "descricao";
     private static final String PRECO = "preco";
-    private static final String IMG_PROD = "immagem";
+    private static final String IMG_PROD = "imagem";
 
     // private ContentValues cValues;
     //private SQLiteDatabase dataBase = null;
 
     private final SQLiteDatabase database;
 
-    public DBHelper(Context context) {
+    public ProdDBHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         this.database = this.getWritableDatabase();
     }
@@ -41,15 +35,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase database) {
 
-        String CREATE_TABLE="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("
-                +ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +NAME+" VARCHAR, "+EMAIL +" VARCHAR, "
-                +PASSWORD +" VARCHAR)";
-        database.execSQL(CREATE_TABLE);
-
-        String CREATE_TABLE_PROD="CREATE TABLE IF NOT EXISTS "+TABLE_PROD+" ("
-                +ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-                +NOME_PRODUTO+" TEXT, "+DESCRICAO +" TEXT, "
+        String CREATE_TABLE_PROD="CREATE TABLE IF NOT EXISTS "+TABLE_NAME+" ("
+                +ID_PROD+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+                +NOME_PRODUTO+" TEXT, "
+                +DESCRICAO +" TEXT, "
                 +PRECO +" INTEGER, "
                 +IMG_PROD + "TEXT);";
         database.execSQL(CREATE_TABLE_PROD);
@@ -91,24 +80,24 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(PRECO, String.valueOf(produto.getPrice()));
         values.put(IMG_PROD, produto.getImage_url());
 
-        return this.database.update(TABLE_PROD, values, "id = ?", new String[]{"" + produto.getId()}) > 0;
+        return this.database.update(TABLE_NAME, values, "id = ?", new String[]{"" + produto.getId()}) > 0;
     }
 
     public boolean removerProdutoBD(long idProduto)
     {
-        return (this.database.delete(TABLE_PROD,  "id = ?", new String[]{"" +idProduto}) == 1);
+        return (this.database.delete(TABLE_NAME,  "id = ?", new String[]{"" +idProduto}) == 1);
     }
 
     public void removerAllProdutos()
     {
-        this.database.delete(TABLE_PROD, null,null);
+        this.database.delete(TABLE_NAME, null,null);
     }
 
     public ArrayList<Product> getAllProdutosBD()
     {
         ArrayList<Product> products = new ArrayList<>();
 
-        Cursor cursor = this.database.query(TABLE_PROD, new String[]{"id",
+        Cursor cursor = this.database.query(TABLE_NAME, new String[]{"id",
                         NOME_PRODUTO, DESCRICAO, PRECO, IMG_PROD},
                 null,null,null,null,null);
 

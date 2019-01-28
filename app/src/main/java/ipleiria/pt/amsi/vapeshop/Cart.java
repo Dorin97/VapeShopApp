@@ -83,7 +83,7 @@ public class Cart extends AppCompatActivity implements BottomNavigationView.OnNa
         btnLoja.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Cart.this, HomePage2.class);
+                Intent intent = new Intent(Cart.this, HomePage.class);
                 startActivity(intent);
             }
         });
@@ -167,7 +167,7 @@ public class Cart extends AppCompatActivity implements BottomNavigationView.OnNa
         switch (item.getItemId()) {
             case R.id.menuHome: {
                 getSupportActionBar().setTitle("Home");
-                Intent intentHomePage = new Intent(this, HomePage2.class);
+                Intent intentHomePage = new Intent(this, HomePage.class);
                 startActivity(intentHomePage);
                 // Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;

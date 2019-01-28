@@ -78,32 +78,18 @@ public class ListaProdutoAdaptador extends BaseAdapter {
         private TextView product_name;
         private TextView price;
         private ImageView imgProduto;
-        /*
-        private TextView autor;
-        private TextView ano;
-        private ImageView capa;
-*/
 
         public ViewHolderLista(View convertView)
         {
             product_name = convertView.findViewById(R.id.product_name);
             price = convertView.findViewById(R.id.price);
             imgProduto = convertView.findViewById(R.id.thumbnail);
-            /*
-            autor = convertView.findViewById(R.id.textViewAutor);
-            ano = convertView.findViewById(R.id.textViewAno);
-            capa = convertView.findViewById(R.id.imageViewCapa);
-            */
         }
 
         public void update(Product produto)
         {
             product_name.setText(produto.getName());
             price.setText(String.valueOf(produto.getPrice()));
-            /*
-            autor.setText(produto.getAutor());
-            ano.setText("" + produto.getAno());
-            */
             Glide.with(context)
                     .load(produto.getImage_url())
                     .placeholder(R.drawable.ipl_semfundo)
