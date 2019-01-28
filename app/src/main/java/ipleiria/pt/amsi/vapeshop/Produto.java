@@ -5,19 +5,30 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.tonyvu.sc.util.CartHelper;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+
+import ipleiria.pt.amsi.vapeshop.model.Product;
 
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
 public class Produto extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView navigationView;
+    private static final String TAG = "ProductActivity";
+
+    Button btnAddCart;
+    Spinner spQuantidade;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +63,23 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
 
         RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
 
-
         // set image using Glide
         Glide.with(this).load(image_url).apply(requestOptions).into(img);
+
+        onOrderProduct();
+    }
+
+    private void onOrderProduct() {
+        btnAddCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                com.android.tonyvu.sc.model.Cart cart = CartHelper.getCart();
+                Log.d(TAG, "Adding product: " + product.getName());
+                cart.add(product, Integer.valueOf(spQuantidade.getSelectedItem().toString()));
+                Intent intent = new Intent(Produto.this, Cart.class);
+                startActivity(intent);
+            }
+        });
     }
 
     //abre janela dos vapers

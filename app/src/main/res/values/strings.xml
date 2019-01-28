@@ -41,4 +41,17 @@
     <string name="descricao_do_prouto">Descricao do prouto</string>
     <string name="preco_do_produto">Preco do produto</string>
     <string name="adicionar_ao_carrinho">Adicionar ao carrinho</string>
+    <string name="total_price">Preco Total</string>
+    <string name="name">Nome</string>
+    <string name="unit_price">Preco Unitário</string>
+    <string name="quantity">Quantidade</string>
+    <string name="price">Preco</string>
+    <string name="clear_cart">Apagar Carrinho</string>
+    <string name="shop">Loja</string><string name="shopping_cart">Shopping Cart</string>
+    <string name="delete_item">Apagar Item</string>
+    <string name="delete_item_message">Tem a certeza que deseja apagar este item?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+
+
 </resources>

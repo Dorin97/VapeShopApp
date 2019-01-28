@@ -21,6 +21,7 @@ import ipleiria.pt.amsi.vapeshop.model.Product;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHolder> {
 
+    public static final String CURRENCY = "€";
     private Context mContext ;
     private List<Product> mData ;
     RequestOptions option;
@@ -77,7 +78,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView pr_name ;
-        TextView description;
         TextView price;
         ImageView img_thumbnail;
         LinearLayout view_container;
@@ -88,8 +88,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
             pr_name = itemView.findViewById(R.id.product_name);
             img_thumbnail = itemView.findViewById(R.id.thumbnail);
             price = itemView.findViewById(R.id.price);
-
-
         }
     }
 
