@@ -58,8 +58,6 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
         TextView tv_price = findViewById(R.id.txtPreco);
         ImageView img = findViewById(R.id.imgProduto);
 
-        // setting values to each view
-
         tv_name.setText(name);
         tv_description.setText(description);
         tv_price.setText(String.valueOf(price) + "€");
