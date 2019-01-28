@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class ProdDBHelper extends SQLiteOpenHelper {
 
-    private static final int DB_VERSION = 1;
-    public static String DATABASE_NAME="VapeshopDB";
+    private static final int DB_VERSION = 2;
+    public static String DATABASE_NAME="vapeshop";
 
     //Produtos
     private static final String TABLE_NAME = "produtos";
@@ -48,7 +48,6 @@ public class ProdDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         onCreate(db);
-
     }
 
     public Product adicionarProdutoBD (Product produto)
@@ -90,7 +89,7 @@ public class ProdDBHelper extends SQLiteOpenHelper {
 
     public void removerAllProdutos()
     {
-        this.database.delete(TABLE_NAME, null,null);
+        //this.database.delete(TABLE_NAME, null,null);
     }
 
     public ArrayList<Product> getAllProdutosBD()
@@ -107,9 +106,9 @@ public class ProdDBHelper extends SQLiteOpenHelper {
                 Product auxProd = new Product(
                         cursor.getLong(0),
                         cursor.getString(1),
-                        cursor.getString(2),
-                        cursor.getFloat(3),
-                        cursor.getString(5));
+                        cursor.getString(3),
+                        cursor.getFloat(2),
+                        cursor.getString(4));
 
                 auxProd.setId(cursor.getLong(0));
                 products.add(auxProd);

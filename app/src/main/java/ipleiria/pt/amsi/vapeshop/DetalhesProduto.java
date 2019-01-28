@@ -64,6 +64,7 @@ public class DetalhesProduto extends AppCompatActivity implements BottomNavigati
         else
         {
             produto = SingletonGestorVapeshop.getInstance(getApplicationContext()).getProduto(idProduto);
+            System.out.println(produto.getName());
             setTitle("Detalhes"+produto.getName());
             preencherDadosProduto();
         }

@@ -110,8 +110,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         loginFormView = findViewById(R.id.email_login_form);
         progressView = findViewById(R.id.login_progress);
-        txtSaveUser = (TextView) findViewById(R.id.txtUsername);
-        txtSavePass = (TextView) findViewById(R.id.txtPass);
+        txtSavePass = (TextView) findViewById(R.id.txtUsername);
+        txtSaveUser = (TextView) findViewById(R.id.txtPass);
         saveButton = (Button) findViewById(R.id.save_button);
 
         saveButton.setOnClickListener(new View.OnClickListener() {

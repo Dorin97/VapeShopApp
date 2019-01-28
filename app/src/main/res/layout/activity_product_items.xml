@@ -13,8 +13,7 @@
         android:layout_width="112dp"
         android:layout_height="110dp"
         android:layout_gravity="center|fill"
-        android:layout_weight="0"
-        android:background="@drawable/loading_shape" />
+        android:layout_weight="0" />
 
     <LinearLayout
         android:layout_width="match_parent"

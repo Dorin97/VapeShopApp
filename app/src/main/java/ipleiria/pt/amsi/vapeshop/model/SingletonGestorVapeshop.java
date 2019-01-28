@@ -119,7 +119,7 @@ public class SingletonGestorVapeshop implements ProdutosListener{
 
     public void getAllProdutosAPI(final Context context, boolean isConnected)
     {
-        Toast.makeText(context, "isConnected: "+ isConnected, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Network connection: "+ isConnected, Toast.LENGTH_LONG).show();
 
         if(!isConnected)
         {
