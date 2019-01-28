@@ -36,7 +36,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
     //enviar o email do user
     public static final String DADOS_EMAIL = "amsi.dei.estg.ipleiria.pt";
 
-    private final String JSON_URL = "http://192.168.1.70:8888/produtos";
+    private final String JSON_URL = "http://192.168.1.77:8888/produtos";
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
     private List<Product> lstProduct;
