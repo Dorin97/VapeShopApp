@@ -1,14 +1,14 @@
 package com.android.tonyvu.sc.model;
 
+import com.android.tonyvu.sc.exception.ProductNotFoundException;
+import com.android.tonyvu.sc.exception.QuantityOutOfRangeException;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import com.android.tonyvu.sc.exception.ProductNotFoundException;
-import com.android.tonyvu.sc.exception.QuantityOutOfRangeException;
 
 /**
  * A representation of shopping cart.
@@ -35,7 +35,7 @@ public class Cart implements Serializable {
             cartItemMap.put(sellable, quantity);
         }
 
-        totalPrice = totalPrice.add(sellable.getPrice().multiply(BigDecimal.valueOf(quantity)));
+        totalPrice = totalPrice.add(totalPrice.multiply(BigDecimal.valueOf(quantity)));
         totalQuantity += quantity;
     }
 
@@ -53,12 +53,12 @@ public class Cart implements Serializable {
             throw new QuantityOutOfRangeException(quantity + " is not a valid quantity. It must be non-negative.");
 
         int productQuantity = cartItemMap.get(sellable);
-        BigDecimal productPrice = sellable.getPrice().multiply(BigDecimal.valueOf(productQuantity));
+        BigDecimal productPrice = totalPrice.multiply((BigDecimal.valueOf(productQuantity)));
 
         cartItemMap.put(sellable, quantity);
 
         totalQuantity = totalQuantity - productQuantity + quantity;
-        totalPrice = totalPrice.subtract(productPrice).add(sellable.getPrice().multiply(BigDecimal.valueOf(quantity)));
+        totalPrice = totalPrice.subtract(productPrice).add(totalPrice.multiply(BigDecimal.valueOf(quantity)));
     }
 
     /**
@@ -83,7 +83,7 @@ public class Cart implements Serializable {
             cartItemMap.put(sellable, productQuantity - quantity);
         }
 
-        totalPrice = totalPrice.subtract(sellable.getPrice().multiply(BigDecimal.valueOf(quantity)));
+        totalPrice = totalPrice.subtract(totalPrice.multiply((BigDecimal.valueOf(productQuantity))));
         totalQuantity -= quantity;
     }
 
@@ -98,7 +98,7 @@ public class Cart implements Serializable {
 
         int quantity = cartItemMap.get(sellable);
         cartItemMap.remove(sellable);
-        totalPrice = totalPrice.subtract(sellable.getPrice().multiply(BigDecimal.valueOf(quantity)));
+        totalPrice = totalPrice.subtract(totalPrice.multiply((BigDecimal.valueOf(quantity))));
         totalQuantity -= quantity;
     }
 
@@ -132,7 +132,7 @@ public class Cart implements Serializable {
      */
     public BigDecimal getCost(final Saleable sellable) throws ProductNotFoundException {
         if (!cartItemMap.containsKey(sellable)) throw new ProductNotFoundException();
-        return sellable.getPrice().multiply(BigDecimal.valueOf(cartItemMap.get(sellable)));
+        return totalPrice.multiply(BigDecimal.valueOf(cartItemMap.get(sellable)));
     }
 
     /**

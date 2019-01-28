@@ -18,3 +18,4 @@ app/src/main/AndroidManifest.xml
 app/src/main/java/ipleiria/pt/amsi/vapeshop/CompanyHomePage.java
 .idea/misc.xml
 build.gradle
+app/src/main/AndroidManifest.xml

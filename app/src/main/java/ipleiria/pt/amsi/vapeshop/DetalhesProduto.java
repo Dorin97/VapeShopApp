@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,23 +13,30 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.android.tonyvu.sc.model.Cart;
 import com.android.tonyvu.sc.util.CartHelper;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
-import com.android.tonyvu.sc.model.Cart;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import ipleiria.pt.amsi.vapeshop.model.Product;
+import ipleiria.pt.amsi.vapeshop.model.SingletonGestorVapeshop;
 
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
-public class Produto extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class DetalhesProduto extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
     private BottomNavigationView navigationView;
-    private static final String TAG = "ProductActivity";
 
-    Button btnAddCart;
-    Spinner spQuantidade;
-    Product product;
+    public Product produto;
+
+    public TextView txtNomeProduto;
+    public TextView txtDescricao;
+    public TextView txtPreco;
+    public ImageView imgProduto;
+    long idProduto;
+
+    public Button btnAddCart;
+    public Spinner spQuantidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,44 +46,104 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
 
         //inicialização do bottom menu
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
-
         //chamamos o método setOnNavigationItemSelectedListener para a Activity
         // notificar e escutar quando um item da Bottom Navigation for selecionado.
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        // Recieve data
-        String name  = getIntent().getExtras().getString("nome");
-        String description = getIntent().getExtras().getString("descricao");
-        Double price = getIntent().getExtras().getDouble("preco") ;
-        String image_url = getIntent().getExtras().getString("imagem") ;
 
-        // ini views
+        txtNomeProduto = (TextView) findViewById(R.id.txtNomeProduto);
+        txtDescricao = (TextView) findViewById(R.id.txtDescricao);
+        txtPreco = (TextView) findViewById(R.id.txtPreco);
+        imgProduto = (ImageView) findViewById(R.id.imgProduto);
 
-        TextView tv_name = findViewById(R.id.txtNomeProduto);
-        TextView tv_description = findViewById(R.id.txtDescricao);
-        TextView tv_price = findViewById(R.id.txtPreco);
-        ImageView img = findViewById(R.id.imgProduto);
 
+<<<<<<< HEAD:app/src/main/java/ipleiria/pt/amsi/vapeshop/Produto.java
         tv_name.setText(name);
         tv_description.setText(description);
         tv_price.setText(String.valueOf(price) + "€");
+=======
+        if(idProduto == -1)
+        {
+            setTitle(R.string.AdicionarProduto);
+        }
+        else
+        {
+            produto = SingletonGestorVapeshop.getInstance(getApplicationContext()).getProduto(idProduto);
+            setTitle("Detalhes"+produto.getName());
+            preencherDadosProduto();
+        }
 
-        RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
+        idProduto = getIntent().getLongExtra(HomePage.DETALHES_PRODUTO, -1);
+>>>>>>> Dorin:app/src/main/java/ipleiria/pt/amsi/vapeshop/DetalhesProduto.java
 
-        // set image using Glide
-        Glide.with(this).load(image_url).apply(requestOptions).into(img);
+        produto = SingletonGestorVapeshop.getInstance(getApplicationContext()).getProduto(idProduto);
 
+        setTitle("Detalhes:"+produto.getName());
+
+        preencherDadosProduto();
         onOrderProduct();
+
     }
 
+    private void preencherDadosProduto()
+    {
+        txtNomeProduto.setText(produto.getName());
+        txtDescricao.setText(produto.getDescription());
+        txtPreco.setText(String.valueOf(produto.getPrice()));
+        Glide.with(getApplicationContext())
+                .load(produto.getImage_url())
+                .placeholder(R.drawable.ipl_semfundo)
+                .thumbnail(0f)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgProduto);
+    }
+
+    private Product criarProduto()
+    {
+        String img = "http://amsi.dei.estg.ipleiria.pt/img/ipl_semfundo.png";
+
+        Product auxProduto = new Product(
+                0,
+                txtNomeProduto.getText().toString(),
+                txtDescricao.getText().toString(),
+                (float) Integer.parseInt(txtPreco.getText().toString()),
+                img
+        );
+
+        return auxProduto;
+    }
+
+    private Product editarProduto()
+    {
+        produto.setName(txtNomeProduto.getText().toString());
+        produto.setDescription(txtDescricao.getText().toString());
+        produto.setPrice(Float.valueOf(txtPreco.getText().toString()));
+
+        return produto;
+    }
+/*
+    public void onClickGuardarProdutos(View view) {
+
+        if(idProduto == -1)
+        {
+            SingletonGestorVapeshop.getInstance(getApplicationContext()).adicionarProdutoBD(criarProduto());
+            finish();
+        }
+        else
+        {
+            SingletonGestorVapeshop.getInstance(getApplicationContext()).editarProdutoBD(criarProduto());
+        }
+
+    }
+*/
     private void onOrderProduct() {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Cart cart = CartHelper.getCart();
-               // Log.d(TAG, "Adding product: " + product.getName());
+                // Log.d(TAG, "Adding product: " + product.getName());
                 //cart.add(product, Integer.valueOf(spQuantidade.getSelectedItem().toString()));
-                Intent intent = new Intent(Produto.this, Cart.class);
+                Intent intent = new Intent(DetalhesProduto.this, Cart.class);
                 startActivity(intent);
             }
         });

@@ -1,15 +1,13 @@
 package ipleiria.pt.amsi.vapeshop;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import com.bumptech.glide.request.RequestOptions;
 
 public class Profile extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -39,7 +37,7 @@ public class Profile extends AppCompatActivity implements BottomNavigationView.O
         tv_name.setText(username);
         tv_description.setText(email);
 
-        RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
+        //RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
 
     }
 

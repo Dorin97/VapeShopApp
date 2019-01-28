@@ -16,20 +16,19 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import ipleiria.pt.amsi.vapeshop.adapter.CartItemAdapter;
-
 import com.android.tonyvu.sc.model.Saleable;
 import com.android.tonyvu.sc.util.CartHelper;
 
-import ipleiria.pt.amsi.vapeshop.adapter.ProductAdapter;
-import ipleiria.pt.amsi.vapeshop.model.CartItem;
-import ipleiria.pt.amsi.vapeshop.model.Product;
-
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import ipleiria.pt.amsi.vapeshop.adapter.CartItemAdapter;
+import ipleiria.pt.amsi.vapeshop.model.CartItem;
+import ipleiria.pt.amsi.vapeshop.model.Product;
+
+//import ipleiria.pt.amsi.vapeshop.adapter.ProductAdapter;
 
 // AImplementamos a interface BottomNavigationView.OnNavigationItemSelectedListener
 // para transformar a Activity numa Listener de item de menu
@@ -58,7 +57,7 @@ public class Cart extends AppCompatActivity implements BottomNavigationView.OnNa
 
         final com.android.tonyvu.sc.model.Cart cart = CartHelper.getCart();
         final TextView tvTotalPrice = (TextView) findViewById(R.id.tvTotalPrice);
-        tvTotalPrice.setText(ProductAdapter.CURRENCY+String.valueOf(cart.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
+       //tvTotalPrice.setText(ProductAdapter.CURRENCY+String.valueOf(cart.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
 
         lvCartItems.addHeaderView(layoutInflater.inflate(R.layout.cart_header, lvCartItems, false));
 
@@ -77,7 +76,7 @@ public class Cart extends AppCompatActivity implements BottomNavigationView.OnNa
                 cart.clear();
                 cartItemAdapter.updateCartItems(getCartItems(cart));
                 cartItemAdapter.notifyDataSetChanged();
-                tvTotalPrice.setText(ProductAdapter.CURRENCY+String.valueOf(cart.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
+                //tvTotalPrice.setText(ProductAdapter.CURRENCY+String.valueOf(cart.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
             }
         });
 
@@ -103,7 +102,7 @@ public class Cart extends AppCompatActivity implements BottomNavigationView.OnNa
                                 cartItems.remove(position-1);
                                 cartItemAdapter.updateCartItems(cartItems);
                                 cartItemAdapter.notifyDataSetChanged();
-                                tvTotalPrice.setText(Product.CURRENCY+String.valueOf(cart.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
+                               // tvTotalPrice.setText(Product.CURRENCY+String.valueOf(cart.getTotalPrice().setScale(2, BigDecimal.ROUND_HALF_UP)));
                             }
                         })
                         .setNegativeButton(getResources().getString(R.string.nao), null)
@@ -120,7 +119,7 @@ public class Cart extends AppCompatActivity implements BottomNavigationView.OnNa
                 Product product = (Product) cartItems.get(position-1).getProduto();
                 Log.d(TAG, "Viewing product: " + product.getName());
                 bundle.putSerializable("product", (Serializable) product);
-                Intent intent = new Intent(Cart.this, Produto.class);
+                Intent intent = new Intent(Cart.this, DetalhesProduto.class);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }

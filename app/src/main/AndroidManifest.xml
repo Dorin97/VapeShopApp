@@ -34,7 +34,14 @@
 
         <activity android:name=".CompanyMenu" />
         <activity
+<<<<<<< HEAD
             android:name=".Produto"
+=======
+            android:name=".HomePage"
+            android:label="@string/title_home" />
+        <activity
+            android:name=".DetalhesProduto"
+>>>>>>> Dorin
             android:label="@string/title_activity_product" />
         <activity
             android:name=".Profile"

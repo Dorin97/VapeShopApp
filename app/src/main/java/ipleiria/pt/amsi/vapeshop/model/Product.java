@@ -2,10 +2,8 @@ package ipleiria.pt.amsi.vapeshop.model;
 
 import com.android.tonyvu.sc.model.Saleable;
 
-import java.math.BigDecimal;
-
 public class Product implements Saleable {
-    public static final String CURRENCY = "$";
+    public static final String CURRENCY = "€";
 
     private  long id;
     private String name ;
