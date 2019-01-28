@@ -44,5 +44,5 @@ dependencies {
 }
 
 repositories {
-    maven { url "https://192.168.1.70/vapeshop/backend/web/uploads"  }
+    maven { url "https://192.168.1.70/vapeshop/backend/web/uploads" }
 }

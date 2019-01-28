@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
 
-
     private String text;
 
     /****/
@@ -90,8 +89,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         txtUser = (AutoCompleteTextView) findViewById(R.id.txtUsername);
         populateAutoComplete();
-
-
         txtPass = (EditText) findViewById(R.id.txtPass);
         txtPass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -129,6 +126,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     }
 
+    //abre janela login companny
+    public void onClickCompany(View view) {
+        Intent intentCompany = new Intent(this, CompanyHomePage.class);
+        startActivity(intentCompany);
+    }
+
     public void saveData() {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -152,7 +155,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         textView1.setText(text);
 
     }
-
 
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
