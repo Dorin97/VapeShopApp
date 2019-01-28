@@ -18,11 +18,10 @@ public class CompanyRegister extends AppCompatActivity {
     Button Register;
     String NameHolder, EmailHolder, PasswordHolder;
     Boolean EditTextEmptyHolder;
-    SQLiteDatabase sqLiteDatabaseObj;
-    String SQLiteDataBaseQueryHolder ;
+    SQLiteDatabase sQLiteDatabase;
     DBHelper dbHelper;
     Cursor cursor;
-    String F_Result = "Not_Found";
+    String FinalResult = "Not_Found";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,25 +36,26 @@ public class CompanyRegister extends AppCompatActivity {
 
         dbHelper = new DBHelper(this);
 
-        // Adding click listener to register button.
+        //  Adicionar um click listener no register button.
+
         Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Creating SQLite database if dose n't exists
+                // Criar bd se nao existir.
                 SQLiteDataBaseBuild();
 
-                // Creating SQLite table if dose n't exists.
+                // Criar table se nao existir.
                 SQLiteTableBuild();
 
-                // Checking EditText is empty or Not.
+                // Verificar se esta vazio ou não.
                 CheckEditTextStatus();
 
-                // Method to check Email is already exists or not.
+                // Verificar se o email ja existe ou nao.
                 CheckingEmailAlreadyExistsOrNot();
 
-                // Empty EditText After done inserting process.
-                EmptyEditTextAfterDataInsert();
+                // Limpar o EditText depois de inserir
+                CleanEditTextAfterInsert();
 
 
             }
@@ -63,27 +63,27 @@ public class CompanyRegister extends AppCompatActivity {
 
     }
 
-    // SQLite database build method.
+    // Construir BD
     public void SQLiteDataBaseBuild(){
 
-        sqLiteDatabaseObj = openOrCreateDatabase(DBHelper.DATABASE_NAME, Context.MODE_PRIVATE, null);
+        sQLiteDatabase = openOrCreateDatabase(DBHelper.DATABASE_NAME, Context.MODE_PRIVATE, null);
 
     }
 
-    // SQLite table build method.
+    // Construir Table da BD
     public void SQLiteTableBuild() {
 
-        sqLiteDatabaseObj.execSQL("CREATE TABLE IF NOT EXISTS " + DBHelper.TABLE_NAME + "(" +
+        sQLiteDatabase.execSQL("CREATE TABLE IF NOT EXISTS " + DBHelper.TABLE_NAME + "(" +
                 DBHelper.ID + " PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 DBHelper.NAME + " VARCHAR, " +
                 DBHelper.EMAIL + " VARCHAR, " +
                 DBHelper.PASSWORD + " VARCHAR);");
     }
 
-    // Insert data into SQLite database method.
-    public void InsertDataIntoSQLiteDatabase() {
+    // Inserir informacao na bd
+    public void InsertInfoIntoSQLiteDatabase() {
         long a;
-        // If editText is not empty then this block will executed.
+
         if (EditTextEmptyHolder == true) {
             ContentValues contentValues = new ContentValues();
             contentValues.put("name", NameHolder);
@@ -93,15 +93,15 @@ public class CompanyRegister extends AppCompatActivity {
             if (a > 0) {
                 Toast.makeText(this, "You have registered successfully.", Toast.LENGTH_SHORT).show();
             }
-            sqLiteDatabaseObj.close();
+            sQLiteDatabase.close();
 
         }
     }
 
 
 
-    // Empty edittext after done inserting process method.
-    public void EmptyEditTextAfterDataInsert(){
+    // Apagar o EditText depois de inserir.
+    public void CleanEditTextAfterInsert(){
 
         Name.getText().clear();
 
@@ -111,10 +111,10 @@ public class CompanyRegister extends AppCompatActivity {
 
     }
 
-    // Method to check EditText is empty or Not.
+    // Verificar se o EditText esta vazio ou nao.
     public void CheckEditTextStatus(){
 
-        // Getting value from All EditText and storing into String Variables.
+        // Guardar a info em variaveis string.
         NameHolder = Name.getText().toString() ;
         EmailHolder = Email.getText().toString();
         PasswordHolder = Password.getText().toString();
@@ -130,14 +130,14 @@ public class CompanyRegister extends AppCompatActivity {
         }
     }
 
-    // Checking Email is already exists or not.
+    // Verificar se o email ja existe ou nao.
     public void CheckingEmailAlreadyExistsOrNot(){
 
-        // Opening SQLite database write permission.
-        sqLiteDatabaseObj = dbHelper.getWritableDatabase();
+        // Abrir permissão para escrever na bd
+        sQLiteDatabase = dbHelper.getWritableDatabase();
 
-        // Adding search email query to cursor.
-        cursor = sqLiteDatabaseObj.query(DBHelper.TABLE_NAME, null, " " +
+        // adicionar uma query para procurar o email
+        cursor = sQLiteDatabase.query(DBHelper.TABLE_NAME, null, " " +
                 DBHelper.EMAIL + "=?", new String[]{EmailHolder}, null, null, null);
 
         while (cursor.moveToNext()) {
@@ -146,39 +146,39 @@ public class CompanyRegister extends AppCompatActivity {
 
                 cursor.moveToFirst();
 
-                // If Email is already exists then Result variable value set as Email Found.
-                F_Result = "Email Found";
+                FinalResult = "Email Found";
 
-                // Closing cursor.
                 cursor.close();
             }
         }
 
-        // Calling method to check final result and insert data into SQLite database.
+
+        // Chamar o metodo para verificar o resultado final e inserir na bd
+
         CheckFinalResult();
 
     }
 
 
-    // Checking result
+    // Verificar resultado
     public void CheckFinalResult(){
 
-        // Checking whether email is already exists or not.
-        if(F_Result.equalsIgnoreCase("Email Found"))
+        // verificar se o email ja existe ou nao..
+        if(FinalResult.equalsIgnoreCase("Email Found"))
         {
 
-            // If email is exists then toast msg will display.
+            // se existir mandar uma tosta a dizer que ja existe.
             Toast.makeText(CompanyRegister.this,"Email Already Exists",Toast.LENGTH_LONG).show();
 
         }
         else {
 
-            // If email already dose n't exists then user registration details will entered to SQLite database.
-            InsertDataIntoSQLiteDatabase();
+            //Se não existir , insere na bd
+            InsertInfoIntoSQLiteDatabase();
 
         }
 
-        F_Result = "Not_Found" ;
+        FinalResult = "Not_Found" ;
 
     }
 

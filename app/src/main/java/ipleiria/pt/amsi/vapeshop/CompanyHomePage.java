@@ -37,45 +37,45 @@ public class CompanyHomePage extends AppCompatActivity {
 
         dBHelper = new DBHelper(this);
 
-        //Adding click listener to log in button.
+        //Adicionar um click listener no login button.
         LogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Calling EditText is empty or no method.
+                // Chamar a função para ver se o EditText está vazio ou nao.
                 CheckEditTextStatus();
 
-                // Calling login method.
+                // Chamar a função login.
                 LoginFunction();
 
 
             }
         });
 
-
-        // Adding click listener to register button.
+        // Adicionar um click listener no register button.
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Opening new user registration activity using intent on button click.
+                // Abrir a atividade register
                 Intent intent = new Intent(CompanyHomePage.this, CompanyRegister.class);
                 startActivity(intent);
 
             }
         });
-
     }
 
-    // Login function starts from here.
+    //Função login
+
     public void LoginFunction(){
 
         if(EditTextEmptyHolder) {
 
-            // Opening SQLite database write permission.
+            // Abrir permissão para escrever na database.
+
             sqLiteDatabaseObj = dBHelper.getWritableDatabase();
 
-            // Adding search email query to cursor.
+            // Adicionar uma query para procurar emails no cursor.
             cursor = sqLiteDatabaseObj.query(DBHelper.TABLE_NAME, null, " " + DBHelper.EMAIL + "=?", new String[]{EmailHolder}, null, null, null);
 
             while (cursor.moveToNext()) {
@@ -84,35 +84,33 @@ public class CompanyHomePage extends AppCompatActivity {
 
                     cursor.moveToFirst();
 
-                    // Storing Password associated with entered email.
+                    // Guardar a password com o respetivo email.
                     TempPassword = cursor.getString(cursor.getColumnIndex(DBHelper.PASSWORD));
 
-                    // Closing cursor.
                     cursor.close();
                 }
             }
 
-            // Calling method to check final result ..
+            // Verificar o resultado
             CheckFinalResult();
 
         }
         else {
 
-            //If any of login EditText empty then this block will be executed.
             Toast.makeText(CompanyHomePage.this,"Please Enter UserName or Password.",Toast.LENGTH_LONG).show();
 
         }
 
     }
 
-    // Checking EditText is empty or not.
+    // Função para ver se o EditText está vazio ou nao.
     public void CheckEditTextStatus(){
 
-        // Getting value from All EditText and storing into String Variables.
+
         EmailHolder = Email.getText().toString();
         PasswordHolder = Password.getText().toString();
 
-        // Checking EditText is empty or no using TextUtils.
+        // Usar o TextUtils para fazer a verificação.
         if( TextUtils.isEmpty(EmailHolder) || TextUtils.isEmpty(PasswordHolder)){
 
             EditTextEmptyHolder = false ;
@@ -124,7 +122,7 @@ public class CompanyHomePage extends AppCompatActivity {
         }
     }
 
-    // Checking entered password from SQLite database email associated password.
+    // Verificar a password inserida com a password que esta associada ao email na bd
     public void CheckFinalResult(){
 
         if(TempPassword.equalsIgnoreCase(PasswordHolder))
@@ -132,10 +130,10 @@ public class CompanyHomePage extends AppCompatActivity {
 
             Toast.makeText(CompanyHomePage.this,"Login Successfully",Toast.LENGTH_LONG).show();
 
-            // Going to Dashboard activity after login success message.
+            // Ir para o menu se o login
             Intent intent = new Intent(CompanyHomePage.this, CompanyMenu.class);
 
-            // Sending Email to Dashboard Activity using intent.
+            // Mandar o email da companhia para o menu
             intent.putExtra(UserEmail, EmailHolder);
 
             startActivity(intent);
@@ -144,7 +142,7 @@ public class CompanyHomePage extends AppCompatActivity {
         }
         else {
 
-            Toast.makeText(CompanyHomePage.this,"UserName or Password is Wrong, Please Try Again.",Toast.LENGTH_LONG).show();
+            Toast.makeText(CompanyHomePage.this,"Username or Password is Wrong, Please Try Again.",Toast.LENGTH_LONG).show();
 
         }
         TempPassword = "NOT_FOUND" ;

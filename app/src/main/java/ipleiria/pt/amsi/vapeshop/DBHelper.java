@@ -20,12 +20,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public static final String PASSWORD="password";
 
-    // private ContentValues cValues;
-    //private SQLiteDatabase dataBase = null;
 
     public DBHelper(Context context) {
 
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, DB_VERSION);
 
     }
 

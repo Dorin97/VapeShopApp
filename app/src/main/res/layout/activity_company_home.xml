@@ -11,13 +11,13 @@
     >
 
     <TextView
-        android:text="success"
+        android:text="Success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textAppearance="?android:textAppearanceLarge"
         android:textColor="#000"
-        android:id="@+id/textView1"
+        android:id="@+id/textViewLogout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="176dp" />
@@ -26,13 +26,13 @@
         android:text="LOGOUT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
+        android:layout_below="@+id/textViewLogout"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif-condensed"
         android:background="#ff00"
         android:textColor="#fff"
         android:textAppearance="?android:textAppearanceLarge"
         android:layout_marginTop="36dp"
-        android:id="@+id/button1" />
+        android:id="@+id/buttonLogout" />
 
 </RelativeLayout>

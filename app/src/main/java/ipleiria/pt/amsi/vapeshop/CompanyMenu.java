@@ -12,29 +12,28 @@ public class CompanyMenu extends AppCompatActivity {
 
     String EmailHolder;
     TextView Email;
-    Button LogOUT ;
+    Button Logout ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_company_home);
 
-        Email = (TextView)findViewById(R.id.textView1);
-        LogOUT = (Button)findViewById(R.id.button1);
+        Email = (TextView)findViewById(R.id.textViewLogout);
+        Logout = (Button)findViewById(R.id.buttonLogout);
 
         Intent intent = getIntent();
 
-        // Receiving User Email Send By MainActivity.
+        // Receber o email
         EmailHolder = intent.getStringExtra(CompanyHomePage.UserEmail);
 
-        // Setting up received email to TextView.
         Email.setText(Email.getText().toString()+ EmailHolder);
 
-        // Adding click listener to Log Out button.
-        LogOUT.setOnClickListener(new View.OnClickListener() {
+        //  Adicionar um click listener no Logout button.
+        Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //Finishing current DashBoard activity on button click.
                 finish();
 
                 Toast.makeText(CompanyMenu.this,"Log Out Successfull", Toast.LENGTH_LONG).show();
