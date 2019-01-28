@@ -34,9 +34,6 @@
 
         <activity android:name=".CompanyMenu" />
         <activity
-            android:name=".HomePage"
-            android:label="@string/title_home" />
-        <activity
             android:name=".Produto"
             android:label="@string/title_activity_product" />
         <activity
