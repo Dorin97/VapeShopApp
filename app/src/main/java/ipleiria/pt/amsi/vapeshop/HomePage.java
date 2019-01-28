@@ -20,6 +20,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
     //enviar o email do user
     public static final String DADOS_EMAIL = "amsi.dei.estg.ipleiria.pt";
 
-    private final String JSON_URL = "http://192.168.1.77:8888/produtos";
+    private final String JSON_URL = "http://192.168.1.70:8888/produtos";
     private JsonArrayRequest request;
     private RequestQueue requestQueue;
     private List<Product> lstProduct;
@@ -69,7 +70,7 @@ public class HomePage extends AppCompatActivity implements BottomNavigationView.
                         Product product = new Product();
                         product.setName(jsonObject.getString("nome"));
                         product.setDescription(jsonObject.getString("descricao"));
-                        product.setPrice(jsonObject.getDouble("preco"));
+                        product.setPrice(BigDecimal.valueOf(jsonObject.getDouble("preco")));
                         product.setImage_url(jsonObject.getString("imagem"));
                         lstProduct.add(product);
 

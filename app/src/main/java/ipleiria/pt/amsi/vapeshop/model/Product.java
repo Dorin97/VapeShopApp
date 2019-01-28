@@ -1,20 +1,33 @@
 package ipleiria.pt.amsi.vapeshop.model;
 
-public class Product {
+import com.android.tonyvu.sc.model.Saleable;
 
+import java.math.BigDecimal;
+
+public class Product implements Saleable {
+    public static final String CURRENCY = "$";
+
+    private  int id;
     private String name ;
     private String description;
-    private Double price;
+    private BigDecimal price;
     private String image_url;
 
-
     public Product() {
+        super();
+    }
+
+    public Product(int id, String name, String description, BigDecimal price, String image_url) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.image_url = image_url;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;
@@ -24,7 +37,7 @@ public class Product {
         return description;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
@@ -32,6 +45,9 @@ public class Product {
         return image_url;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -41,7 +57,7 @@ public class Product {
         this.description = description;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
