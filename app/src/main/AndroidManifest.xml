@@ -32,8 +32,10 @@
         </activity>
         <activity android:name=".CompanyHomePage"
             android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".CompanyRegister"
             android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".CompanyMenu" />
         <activity
             android:name=".HomePage"

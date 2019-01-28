@@ -21,7 +21,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="8dp"
-            android:onClick="onClickVapers"
             android:src="@drawable/vapers"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imgBtnLiquid"
