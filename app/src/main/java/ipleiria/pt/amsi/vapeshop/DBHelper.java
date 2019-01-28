@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
-    static String DATABASE_NAME="UserDataBase";
+    static String DATABASE_NAME="Vapeshop";
 
     public static final String TABLE_NAME="UserTable";
 

@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class CompanyHomePage extends AppCompatActivity {
 
-    Button LogInButton, RegisterButton, LogInUserButton;
+    Button LogInButton, RegisterButton;
     EditText Email, Password ;
     String EmailHolder, PasswordHolder;
     Boolean EditTextEmptyHolder;
@@ -32,8 +32,6 @@ public class CompanyHomePage extends AppCompatActivity {
 
         RegisterButton = (Button)findViewById(R.id.buttonRegister);
 
-        LogInUserButton = (Button)findViewById(R.id.btnLoginUser);
-
         Email = (EditText)findViewById(R.id.editEmail);
         Password = (EditText)findViewById(R.id.editPassword);
 
@@ -43,22 +41,17 @@ public class CompanyHomePage extends AppCompatActivity {
         LogInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
 
                 // Chamar a função para ver se o EditText está vazio ou nao.
                 CheckEditTextStatus();
 
                 // Chamar a função login.
-=======
-                // Calling EditText is empty or no method.
-                CheckEditTextStatus();
-                // Calling login method.
->>>>>>> Dorin
                 LoginFunction();
+
+
             }
         });
 
-<<<<<<< HEAD
         // Adicionar um click listener no register button.
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,25 +60,7 @@ public class CompanyHomePage extends AppCompatActivity {
                 // Abrir a atividade register
                 Intent intent = new Intent(CompanyHomePage.this, CompanyRegister.class);
                 startActivity(intent);
-=======
-        // Adding click listener to register button.
-        RegisterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Opening new user registration activity using intent on button click.
-                Intent intentRegistro = new Intent(CompanyHomePage.this, CompanyRegister.class);
-                startActivity(intentRegistro);
-            }
-        });
->>>>>>> Dorin
 
-        // Adicionar click listener ao botao "login as user" para voltar á janela de login o user.
-        LogInUserButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Opening new user registration activity using intent on button click.
-                Intent intentUserLogin = new Intent(CompanyHomePage.this, LoginActivity.class);
-                startActivity(intentUserLogin);
             }
         });
     }
@@ -158,7 +133,7 @@ public class CompanyHomePage extends AppCompatActivity {
             // Ir para o menu se o login
             Intent intent = new Intent(CompanyHomePage.this, CompanyMenu.class);
 
-            // Mandar o email da companhia para o menu
+            // Enviar o email da companhia para o menu
             intent.putExtra(UserEmail, EmailHolder);
 
             startActivity(intent);
