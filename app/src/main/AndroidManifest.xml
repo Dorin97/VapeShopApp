@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ipleiria.pt.amsi.vapeshop">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -32,8 +33,10 @@
         </activity>
         <activity android:name=".CompanyHomePage"
             android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".CompanyRegister"
             android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name=".CompanyMenu" />
         <activity
             android:name=".HomePage"

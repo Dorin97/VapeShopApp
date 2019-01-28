@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ipleiria.pt.amsi.vapeshop.model.DBHelper;
+
 public class CompanyRegister extends AppCompatActivity {
 
     EditText Email, Password, Name ;

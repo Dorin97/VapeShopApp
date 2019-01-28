@@ -67,8 +67,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     /****/
 
-    private TextView textView;
-    private TextView textView1;
+    private TextView txtSaveUser;
+    private TextView txtSavePass;
     private EditText editText;
     private Button applyTextButton;
     private Button saveButton;
@@ -111,8 +111,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         loginFormView = findViewById(R.id.email_login_form);
         progressView = findViewById(R.id.login_progress);
-        textView = (TextView) findViewById(R.id.txtUsername);
-        textView1 = (TextView) findViewById(R.id.txtPass);
+        txtSaveUser = (TextView) findViewById(R.id.txtUsername);
+        txtSavePass = (TextView) findViewById(R.id.txtPass);
         saveButton = (Button) findViewById(R.id.save_button);
 
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -136,8 +136,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(TEXT, textView.getText().toString());
-        editor.putString(TEXT, textView1.getText().toString());
+        editor.putString(TEXT, txtSaveUser.getText().toString());
+        editor.putString(TEXT, txtSavePass.getText().toString());
 
         editor.apply();
 
@@ -151,8 +151,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     public void updateViews() {
-        textView.setText(text);
-        textView1.setText(text);
+        txtSaveUser.setText(text);
+        txtSavePass.setText(text);
 
     }
 

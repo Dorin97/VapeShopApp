@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.android.tonyvu.sc.util.CartHelper;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.android.tonyvu.sc.model.Cart;
 
 import ipleiria.pt.amsi.vapeshop.model.Product;
 
@@ -34,6 +36,7 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
+        btnAddCart = (Button) findViewById(R.id.btnAddCart);
 
         //inicialização do bottom menu
         navigationView = (BottomNavigationView) findViewById(R.id.bottom_nav);
@@ -73,13 +76,19 @@ public class Produto extends AppCompatActivity implements BottomNavigationView.O
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                com.android.tonyvu.sc.model.Cart cart = CartHelper.getCart();
-                Log.d(TAG, "Adding product: " + product.getName());
-                cart.add(product, Integer.valueOf(spQuantidade.getSelectedItem().toString()));
+                Cart cart = CartHelper.getCart();
+               // Log.d(TAG, "Adding product: " + product.getName());
+                //cart.add(product, Integer.valueOf(spQuantidade.getSelectedItem().toString()));
                 Intent intent = new Intent(Produto.this, Cart.class);
                 startActivity(intent);
             }
         });
+    }
+
+    private void initializeQuantity() {
+        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spQuantidade.setAdapter(dataAdapter);
     }
 
     //abre janela dos vapers
