@@ -15,3 +15,4 @@
 .idea/caches/gradle_models.ser
 .idea/gradle.xml
 app/src/main/AndroidManifest.xml
+app/src/main/java/ipleiria/pt/amsi/vapeshop/CompanyHomePage.java

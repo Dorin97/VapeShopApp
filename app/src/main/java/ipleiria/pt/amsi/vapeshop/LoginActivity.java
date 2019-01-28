@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView txtEmail;
+    private AutoCompleteTextView txtUser;
     private EditText txtPass;
     private View progressView;
     private View loginFormView;
@@ -77,7 +77,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEXT = "text";
 
-
     private String text;
 
     /****/
@@ -88,10 +87,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
-        txtEmail = (AutoCompleteTextView) findViewById(R.id.txtEmail);
+        txtUser = (AutoCompleteTextView) findViewById(R.id.txtUsername);
         populateAutoComplete();
-
-
         txtPass = (EditText) findViewById(R.id.txtPass);
         txtPass.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -114,7 +111,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         loginFormView = findViewById(R.id.email_login_form);
         progressView = findViewById(R.id.login_progress);
-        textView = (TextView) findViewById(R.id.txtEmail);
+        textView = (TextView) findViewById(R.id.txtUsername);
         textView1 = (TextView) findViewById(R.id.txtPass);
         saveButton = (Button) findViewById(R.id.save_button);
 
@@ -127,6 +124,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         loadData();
         updateViews();
 
+    }
+
+    //abre janela login companny
+    public void onClickCompany(View view) {
+        Intent intentCompany = new Intent(this, CompanyHomePage.class);
+        startActivity(intentCompany);
     }
 
     public void saveData() {
@@ -153,7 +156,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     }
 
-
     private void populateAutoComplete() {
         if (!mayRequestContacts()) {
             return;
@@ -170,7 +172,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             return true;
         }
         if (shouldShowRequestPermissionRationale(READ_CONTACTS)) {
-            Snackbar.make(txtEmail, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
+            Snackbar.make(txtUser, R.string.permission_rationale, Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, new View.OnClickListener() {
                         @Override
                         @TargetApi(Build.VERSION_CODES.M)
@@ -209,11 +211,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Reset errors.
-        txtEmail.setError(null);
+        txtUser.setError(null);
         txtPass.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = txtEmail.getText().toString();
+        String username = txtUser.getText().toString();
         String password = txtPass.getText().toString();
 
         boolean cancel = false;
@@ -227,13 +229,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            txtEmail.setError(getString(R.string.error_field_required));
-            focusView = txtEmail;
+        if (TextUtils.isEmpty(username)) {
+            txtUser.setError(getString(R.string.error_field_required));
+            focusView = txtUser;
             cancel = true;
-        } else if (!isEmailValid(email)) {
-            txtEmail.setError(getString(R.string.error_invalid_email));
-            focusView = txtEmail;
+        } else if (!isUserValid(username)) {
+            txtUser.setError(getString(R.string.error_invalid_email));
+            focusView = txtUser;
             cancel = true;
         }
 
@@ -245,12 +247,12 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
+            mAuthTask = new UserLoginTask(username, password);
             mAuthTask.execute((Void) null);
         }
     }
 
-    private boolean isEmailValid(String email) {
+    private boolean isUserValid(String email) {
         //TODO: Replace this with your own logic
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
@@ -336,7 +338,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 new ArrayAdapter<>(LoginActivity.this,
                         android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
-        txtEmail.setAdapter(adapter);
+        txtUser.setAdapter(adapter);
     }
 
     private interface ProfileQuery {
@@ -355,11 +357,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
-        private final String mEmail;
+        private final String mUser;
         private final String mPassword;
 
         UserLoginTask(String email, String password) {
-            mEmail = email;
+            mUser = email;
             mPassword = password;
         }
 
@@ -376,7 +378,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
             for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
+                if (pieces[0].equals(mUser)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(mPassword);
                 }
@@ -394,7 +396,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             if (success) {
                 finish();
                 Intent intentLogin = new Intent(getApplicationContext(), HomePage.class);
-                intentLogin.putExtra(HomePage.DADOS_EMAIL, mEmail);
+                intentLogin.putExtra(HomePage.DADOS_EMAIL, mUser);
                 startActivity(intentLogin);
             } else {
                 txtPass.setError(getString(R.string.error_incorrect_password));

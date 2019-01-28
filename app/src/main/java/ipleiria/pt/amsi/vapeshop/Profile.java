@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+
+import com.bumptech.glide.request.RequestOptions;
 
 public class Profile extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -22,6 +25,22 @@ public class Profile extends AppCompatActivity implements BottomNavigationView.O
         //chamamos o método setOnNavigationItemSelectedListener para a Activity
         // notificar e escutar quando um item da Bottom Navigation for selecionado.
         navigationView.setOnNavigationItemSelectedListener(this);
+
+        // Recieve data
+        String username  = getIntent().getExtras().getString("username");
+        String email = getIntent().getExtras().getString("email");
+
+        // ini views
+        TextView tv_name = findViewById(R.id.txtNomeProduto);
+        TextView tv_description = findViewById(R.id.txtDescricao);
+
+        // setting values to each view
+
+        tv_name.setText(username);
+        tv_description.setText(email);
+
+        RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.loading_shape).error(R.drawable.loading_shape);
+
     }
 
     //abre janela dos vapers
