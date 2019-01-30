@@ -30,8 +30,8 @@ public class SingletonGestorVapeshop implements ProdutosListener{
 
     private ProdutosListener produtosListener;
 
-    private String mUrlAPIProdutos =  "http://192.168.1.70:8888/produtos";
-    private String mUrlAPILogin =  "http://192.168.1.70:8888/auth/login";
+    private String mUrlAPIProdutos =  "http://192.168.1.77:8888/produtos";
+
 
     public static synchronized SingletonGestorVapeshop getInstance(Context context) {
         if (INSTANCE == null)

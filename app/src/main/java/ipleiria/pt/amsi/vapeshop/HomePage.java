@@ -29,7 +29,7 @@ import ipleiria.pt.amsi.vapeshop.utils.ProdutoJsonParser;
 public class HomePage extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, ProdutosListener {
 
     public static final String DETALHES_PRODUTO = "PRODUTO";
-    public static final String DADOS_EMAIL = "amsi.dei.estg.ipleiria.pt";
+    public static final String DADOS_EMAIL = "http://192.168.1.77:8888/produtos";
 
     private ListView lvListaProduto;
     private ArrayList<Product> listaProdutos;

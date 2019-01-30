@@ -31,17 +31,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".CompanyHomePage"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".CompanyRegister"
+            android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity android:name=".CompanyMenu" />
         <activity
-<<<<<<< HEAD
-            android:name=".Produto"
-=======
             android:name=".HomePage"
             android:label="@string/title_home" />
         <activity
             android:name=".DetalhesProduto"
->>>>>>> Dorin
             android:label="@string/title_activity_product" />
         <activity
             android:name=".Profile"

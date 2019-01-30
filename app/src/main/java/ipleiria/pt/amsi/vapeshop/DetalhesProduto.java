@@ -57,11 +57,6 @@ public class DetalhesProduto extends AppCompatActivity implements BottomNavigati
         imgProduto = (ImageView) findViewById(R.id.imgProduto);
 
 
-<<<<<<< HEAD:app/src/main/java/ipleiria/pt/amsi/vapeshop/Produto.java
-        tv_name.setText(name);
-        tv_description.setText(description);
-        tv_price.setText(String.valueOf(price) + "€");
-=======
         if(idProduto == -1)
         {
             setTitle(R.string.AdicionarProduto);
@@ -74,7 +69,6 @@ public class DetalhesProduto extends AppCompatActivity implements BottomNavigati
         }
 
         idProduto = getIntent().getLongExtra(HomePage.DETALHES_PRODUTO, -1);
->>>>>>> Dorin:app/src/main/java/ipleiria/pt/amsi/vapeshop/DetalhesProduto.java
 
         produto = SingletonGestorVapeshop.getInstance(getApplicationContext()).getProduto(idProduto);
 
@@ -121,21 +115,21 @@ public class DetalhesProduto extends AppCompatActivity implements BottomNavigati
 
         return produto;
     }
-/*
-    public void onClickGuardarProdutos(View view) {
+    /*
+        public void onClickGuardarProdutos(View view) {
 
-        if(idProduto == -1)
-        {
-            SingletonGestorVapeshop.getInstance(getApplicationContext()).adicionarProdutoBD(criarProduto());
-            finish();
-        }
-        else
-        {
-            SingletonGestorVapeshop.getInstance(getApplicationContext()).editarProdutoBD(criarProduto());
-        }
+            if(idProduto == -1)
+            {
+                SingletonGestorVapeshop.getInstance(getApplicationContext()).adicionarProdutoBD(criarProduto());
+                finish();
+            }
+            else
+            {
+                SingletonGestorVapeshop.getInstance(getApplicationContext()).editarProdutoBD(criarProduto());
+            }
 
-    }
-*/
+        }
+    */
     private void onOrderProduct() {
         btnAddCart.setOnClickListener(new View.OnClickListener() {
             @Override

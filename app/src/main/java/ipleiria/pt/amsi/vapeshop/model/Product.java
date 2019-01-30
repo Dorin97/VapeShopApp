@@ -8,14 +8,14 @@ public class Product implements Saleable {
     private  long id;
     private String name ;
     private String description;
-    private BigDecimal price;
+    private Float price;
     private String image_url;
 
     public Product() {
         super();
     }
 
-    public Product(long id, String name, String description, BigDecimal price, String image_url) {
+    public Product(long id, String name, String description, Float price, String image_url) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -35,7 +35,7 @@ public class Product implements Saleable {
         return description;
     }
 
-    public BigDecimal getPrice() {
+    public Float getPrice() {
         return price;
     }
 
@@ -55,7 +55,7 @@ public class Product implements Saleable {
         this.description = description;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
